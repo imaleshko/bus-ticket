@@ -1,0 +1,47 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  background: #7e9181;
+  padding: 40px 60px;
+  flex-wrap: wrap;
+  gap: 30px;
+  height: 150px;
+}
+
+.leftLink {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.link {
+  color: #fefae0;
+  font-family: "Inter", sans-serif;
+  font-size: 24px;
+  text-decoration: none;
+  padding-bottom: 4px;
+}
+
+.rightLink {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.socials {
+  margin-top: 30px;
+  display: flex;
+  gap: 25px;
+}
+
+.socialIcon {
+  width: 60px;
+  height: 60px;
+}

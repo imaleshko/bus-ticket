@@ -1,0 +1,29 @@
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.stars {
+  display: flex;
+  gap: 10px;
+}
+
+.text {
+  text-align: left;
+}
+
+.title {
+  font-weight: bold;
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  margin: 0;
+  color: #777;
+}
+
+.stars svg {
+  width: 60px;
+  height: 60px;
+}
