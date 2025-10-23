@@ -1,0 +1,41 @@
+.form {
+  display: flex;
+  background-color: white;
+  border-radius: 50px;
+  max-width: 900px;
+  width: 100%;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.input {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 20px 25px;
+  font-size: 18px;
+  flex-grow: 1;
+  width: 0;
+  color: #fefefe;
+}
+
+.input::placeholder {
+  color: #999;
+}
+
+.divider {
+  width: 1px;
+  background-color: #4c4c4c;
+  align-self: stretch;
+  margin: 12px 0;
+}
+
+.button {
+  border: none;
+  background: none;
+  padding: 20px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
