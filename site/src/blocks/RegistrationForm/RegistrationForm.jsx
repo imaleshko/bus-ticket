@@ -1,4 +1,5 @@
 import styles from "./RegistrationForm.module.css";
+import { Link } from "react-router";
 
 const RegistrationForm = () => {
   return (
@@ -22,12 +23,12 @@ const RegistrationForm = () => {
             <input type="checkbox" />Я погоджуюсь з умовами користування
           </label>
         </div>
-        <button type="submit" className={styles.submitButton}>
+        <Link to="/accountinfo" className={styles.submitButton}>
           Зареєструватися
-        </button>
+        </Link>
         <div className={styles.loginLink}>
           <p>Вже маєте акаунт?</p>
-          <a href="#">Авторизація</a>
+          <Link to="/login">Авторизація</Link>
         </div>
       </form>
     </div>

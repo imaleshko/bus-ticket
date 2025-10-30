@@ -1,5 +1,5 @@
 import styles from "./SearchRouteCard.module.css";
-import Button from "../../ui/Button/Button"; // Вкажіть правильний шлях до вашого компонента Button
+import Button from "../../ui/Button/Button";
 
 const SearchRouteCard = ({
   from = "Звідки",

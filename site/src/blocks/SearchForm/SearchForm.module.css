@@ -1,8 +1,6 @@
 .content {
   background-color: #7e9181;
   padding: 40px 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
   position: relative;
   display: flex;
   flex-direction: column;

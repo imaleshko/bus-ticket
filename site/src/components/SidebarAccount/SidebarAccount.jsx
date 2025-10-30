@@ -1,23 +1,24 @@
 import styles from "./SidebarAccount.module.css";
+import { Link } from "react-router";
 
 const SidebarAccount = ({ activePage }) => {
   return (
     <nav className={styles.sidebar}>
-      <a
-        href="#"
+      <Link
+        to="/accountinfo"
         className={`${styles.link} ${activePage === "Info" ? styles.active : ""}`}
       >
         Мої дані
-      </a>
-      <a
-        href="#"
+      </Link>
+      <Link
+        to="/accounttickets"
         className={`${styles.link} ${activePage === "Tickets" ? styles.active : ""}`}
       >
         Мої квитки
-      </a>
-      <a href="#" className={styles.link}>
+      </Link>
+      <Link to="/" className={styles.link}>
         Вихід
-      </a>
+      </Link>
     </nav>
   );
 };

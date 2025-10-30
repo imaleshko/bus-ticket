@@ -1,5 +1,3 @@
-/* src/components/AdvantageItem/AdvantageItem.module.css */
-
 .item {
   display: flex;
   flex-direction: column;
@@ -10,9 +8,9 @@
 }
 
 .icon {
-  width: 40px; /* Встановлюємо фіксовану ширину */
-  height: 40px; /* і висоту для іконок */
-  object-fit: contain; /* Гарантує, що зображення впишеться без спотворень */
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .text {

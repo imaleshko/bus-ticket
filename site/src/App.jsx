@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router";
+import { Routes, Route } from "react-router";
 import Layout from "./layouts/Layout/Layout.jsx";
 import Home from "./pages/Home/Home.jsx";
 import SearchPage from "./pages/SearchPage/SearchPage.jsx";
@@ -11,15 +11,14 @@ import AccountTicketList from "./pages/AccoutnTicketList/AccountTicketList.jsx";
 function App() {
   return (
     <Routes>
-      шішвм
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout />} >
         <Route index element={<Home />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
-        <Route path="accoutninfo" element={<AccountInfoPage />} />
-        <Route path="accouttickets" element={<AccountTicketList />} />
+        <Route path="accountinfo" element={<AccountInfoPage />} />
+        <Route path="accounttickets" element={<AccountTicketList />} />
       </Route>
     </Routes>
   );

@@ -50,6 +50,7 @@
   width: 16px;
   height: 16px;
   accent-color: #7e9181;
+  cursor: pointer;
 }
 
 .submitButton {
@@ -62,6 +63,8 @@
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 30px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .loginLink {

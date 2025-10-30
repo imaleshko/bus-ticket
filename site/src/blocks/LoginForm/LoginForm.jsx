@@ -1,4 +1,5 @@
 import styles from "./LoginForm.module.css";
+import { Link } from "react-router";
 
 const LoginForm = () => {
   return (
@@ -20,12 +21,12 @@ const LoginForm = () => {
             Забули пароль?
           </a>
         </div>
-        <button type="submit" className={styles.submitButton}>
+        <Link to="/accountinfo" className={styles.submitButton}>
           Увійти
-        </button>
+        </Link>
         <div className={styles.signupLink}>
           <p>Не маєте акаунту?</p>
-          <a href="#">Реєстрація</a>
+          <Link to="/registration">Реєстрація</Link>
         </div>
       </form>
     </div>

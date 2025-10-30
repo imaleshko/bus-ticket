@@ -1,4 +1,5 @@
 import styles from "./Search.module.css";
+import { Link } from "react-router";
 
 const Search = () => {
   return (
@@ -9,9 +10,11 @@ const Search = () => {
       <div className={styles.divider}></div>
       <input type="text" placeholder="Коли" className={styles.input} />
       <div className={styles.divider}></div>
-      <button type="submit" className={styles.button}>
-        Шукати
-      </button>
+      <Link to="/search">
+        <button type="button" className={styles.button}>
+          Шукати
+        </button>
+      </Link>
     </form>
   );
 };
