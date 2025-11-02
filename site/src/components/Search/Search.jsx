@@ -1,21 +1,61 @@
 import styles from "./Search.module.css";
-import { Link } from "react-router";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
-const Search = () => {
+const Search = ({ initialFrom = "", initialTo = "", initialDate = "" }) => {
+  const [from, setFrom] = useState(initialFrom);
+  const [to, setTo] = useState(initialTo);
+  const [date, setDate] = useState(initialDate);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (from) {
+      params.append("from", from);
+    }
+    if (to) {
+      params.append("to", to);
+    }
+    if (date) {
+      params.append("date", date);
+    }
+    const queryPath = params.toString();
+    const path = queryPath ? `/search?${queryPath}` : "/search";
+    navigate(path);
+  };
+
   return (
-    <form className={styles.form}>
-      <input type="text" placeholder="Звідки" className={styles.input} />
-      <div className={styles.divider}></div>
-      <input type="text" placeholder="Куди" className={styles.input} />
-      <div className={styles.divider}></div>
-      <input type="text" placeholder="Коли" className={styles.input} />
-      <div className={styles.divider}></div>
-      <Link to="/search">
-        <button type="button" className={styles.button}>
+    <div className={styles.content}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Звідки"
+          className={styles.input}
+          value={from}
+          onChange={(e) => setFrom(e.target.value)}
+        />
+        <div className={styles.divider}></div>
+        <input
+          type="text"
+          placeholder="Куди"
+          className={styles.input}
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+        />
+        <div className={styles.divider}></div>
+        <input
+          type="date"
+          placeholder="Коли"
+          className={styles.input}
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+        <div className={styles.divider}></div>
+        <button type="submit" className={styles.button}>
           Шукати
         </button>
-      </Link>
-    </form>
+      </form>
+    </div>
   );
 };
 
