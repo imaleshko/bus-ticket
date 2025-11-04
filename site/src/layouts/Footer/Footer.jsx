@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import styles from "./Footer.module.css";
-import Instagram from "../../assets/iconsSoc/Instagram.png";
-import TikTok from "../../assets/iconsSoc/TikTok.png";
-import Youtube from "../../assets/iconsSoc/Youtube.png";
+import Instagram from "../../assets/footer/Instagram.png";
+import TikTok from "../../assets/footer/TikTok.png";
+import Youtube from "../../assets/footer/Youtube.png";
 
 const Footer = () => {
   return (

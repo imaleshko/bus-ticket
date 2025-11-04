@@ -1,17 +1,17 @@
-import Slogan from "../../blocks/Slogan/Slogan.jsx";
-import Search from "../../components/Search/Search.jsx";
-import PopularRoutes from "../../blocks/PopularRoutes/PopularRoutes.jsx";
-import Advantages from "../../blocks/Advantages/Advantages.jsx";
-import FeedbackSection from "../../blocks/FeedbackSection/FeedbackSectoin.jsx";
+import Slogan from "../../blocks/Home/Slogan/Slogan.jsx";
+import SearchForm from "../../components/Reusable/SearchForm/SearchForm.jsx";
+import PopularRoutes from "../../blocks/Home/PopularRoutes/PopularRoutes.jsx";
+import Advantages from "../../blocks/Home/Advantages/Advantages.jsx";
+import Feedback from "../../blocks/Home/Feedback/Feedback.jsx";
 
 const Home = () => {
   return (
     <div>
       <Slogan />
-      <Search />
+      <SearchForm />
       <PopularRoutes />
       <Advantages />
-      <FeedbackSection />
+      <Feedback />
     </div>
   );
 };
