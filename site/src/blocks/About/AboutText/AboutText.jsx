@@ -1,7 +1,7 @@
-import styles from "./About.module.css";
-import photo from "../../assets/aboutPic/pexels-minhle17vn-977213.jpg";
+import styles from "./AboutText.module.css";
+import photo from "../../../assets/about/pexels-minhle17vn-977213.jpg";
 
-const About = () => {
+const AboutText = () => {
   return (
     <div className={styles.aboutPageContainer}>
       <h1 className={styles.mainTitle}>Хто ми</h1>
@@ -92,4 +92,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutText;

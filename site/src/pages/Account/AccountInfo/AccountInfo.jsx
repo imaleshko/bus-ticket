@@ -1,5 +1,5 @@
-import Sidebar from "../../components/SidebarAccount/SidebarAccount.jsx";
-import UserInfo from "../../components/UserInfo/UserInfo.jsx";
+import Sidebar from "../../../components/AccountSidebar/AccountSidebar.jsx";
+import UserInfo from "../../../blocks/Account/UserInfo/UserInfo.jsx";
 import styles from "./AccountInfo.module.css";
 
 const AccountInfo = () => {

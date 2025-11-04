@@ -4,7 +4,7 @@ import Button from "../../ui/Button/Button";
 const SearchRouteCard = ({
   from = "Звідки",
   to = "куди",
-  departureTime = "Час виїзду",
+  time = "Час виїзду",
   distance = "xx",
   duration = "xx",
   price = "xxx",
@@ -17,11 +17,11 @@ const SearchRouteCard = ({
             {from} - {to}
           </div>
           <div className={styles.detailsCell}>
-            {distance} кілометрів/ {duration} год
+            {distance} кілометрів / {duration} год
           </div>
         </div>
         <div className={styles.row}>
-          <div className={styles.timeCell}>{departureTime}</div>
+          <div className={styles.timeCell}>{time}</div>
           <div className={styles.priceCell}>{price} грн</div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import EditIcon from "../../assets/account/img.png";
+import EditIcon from "../../../assets/account/img.png";
 import styles from "./UserInfo.module.css";
 
 const UserInfo = () => {

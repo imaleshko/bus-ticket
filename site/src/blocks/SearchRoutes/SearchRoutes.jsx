@@ -1,78 +1,35 @@
 import SearchRouteCard from "../../components/SearchRouteCard/SearchRouteCard.jsx";
 import styles from "./SearchRoutes.module.css";
+import test_data from "../../mock/search_routes.js";
+import RouteNotFound from "../../components/RoutesNotFound/RoutesNotFound.jsx";
 
-const test_data = [
-  {
-    id: "r1",
-    from: "Ужгород",
-    to: "Львів",
-    departureTime: "08:00",
-    distance: "280",
-    duration: "4",
-    price: "700",
-  },
-  {
-    id: "r2",
-    from: "Ужгород",
-    to: "Львів",
-    departureTime: "10:00",
-    distance: "280",
-    duration: "4",
-    price: "700",
-  },
-  {
-    id: "r3",
-    from: "Ужгород",
-    to: "Львів",
-    departureTime: "12:00",
-    distance: "280",
-    duration: "4",
-    price: "700",
-  },
-  {
-    id: "r4",
-    from: "Ужгород",
-    to: "Львів",
-    departureTime: "14:00",
-    distance: "280",
-    duration: "4",
-    price: "700",
-  },
-  {
-    id: "r5",
-    from: "Ужгород",
-    to: "Львів",
-    departureTime: "16:00",
-    distance: "280",
-    duration: "4",
-    price: "700",
-  },
-  {
-    id: "r6",
-    from: "Ужгород",
-    to: "Львів",
-    departureTime: "18:00",
-    distance: "280",
-    duration: "4",
-    price: "700",
-  },
-];
-
-const SearchRoutes = () => {
+const SearchRoutes = ({ from, to, date}) => {
+  const suitableRoutes = [];
+  for (const route of test_data) {
+    const sameFrom = route.from.toLowerCase() === from.toLowerCase();
+    const sameTo = route.to.toLowerCase() === to.toLowerCase();
+    if (sameFrom && sameTo) {
+      suitableRoutes.push(route)
+    }
+  }
   return (
     <div className={styles.blockContainer}>
       <div className={styles.list}>
-        {test_data.map((route) => (
-          <SearchRouteCard
-            key={route.id}
-            from={route.from}
-            to={route.to}
-            departureTime={route.departureTime}
-            distance={route.distance}
-            duration={route.duration}
-            price={route.price}
-          />
-        ))}
+        {suitableRoutes.length > 0 ? (
+          suitableRoutes.map((route) => (
+            <SearchRouteCard
+              key={route.id}
+              from={route.from}
+              to={route.to}
+              time={`${date} ${route.departureTime}`}
+              distance={route.distance}
+              duration={route.duration}
+              price={route.price}
+            />
+          ))
+        ) : (
+          <RouteNotFound text={"За вашим запитом нічого не знайдено"}/>
+          )}
       </div>
     </div>
   );

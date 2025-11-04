@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 20px;
+}
+
+.icon {
+    width: 90px;
+    height: 90px;
+}
+
+.notFoundText {
+    text-align: center;
+    margin: 0;
+}

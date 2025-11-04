@@ -1,4 +1,4 @@
-import Sidebar from "../../components/SidebarAccount/SidebarAccount.jsx";
+import Sidebar from "../../components/AccountSidebar/AccountSidebar.jsx";
 import AccountTicket from "../../components/AccountTicket/AccountTicket.jsx";
 import styles from "./AccountTickets.module.css";
 

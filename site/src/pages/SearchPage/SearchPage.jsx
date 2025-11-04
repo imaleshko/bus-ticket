@@ -11,7 +11,7 @@ const SearchPage = () => {
   return (
     <div>
       <Search initialFrom={from} initialTo={to} initialDate={date} />
-      <SearchRoutes />
+      <SearchRoutes from={from} to={to} date={date} />
     </div>
   );
 };

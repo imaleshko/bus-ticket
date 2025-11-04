@@ -1,7 +1,7 @@
-import styles from "./SidebarAccount.module.css";
+import styles from "./AccountSidebar.module.css";
 import { Link, NavLink } from "react-router";
 
-const SidebarAccount = () => {
+const AccountSidebar = () => {
   const active = ({ isActive }) => {
     return `${styles.link} ${isActive ? styles.active : ""}`;
   };
@@ -20,4 +20,4 @@ const SidebarAccount = () => {
   );
 };
 
-export default SidebarAccount;
+export default AccountSidebar;
