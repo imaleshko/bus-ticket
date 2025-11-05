@@ -2,6 +2,21 @@ import styles from "./RegistrationForm.module.css";
 import { Link } from "react-router";
 
 const RegistrationForm = () => {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    terms: false,
+  })
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setData(prevData => ({
+      ...prevData, [name]: type === "checkbox" ? checked : value
+    }));
+  }
+
   return (
     <div className={styles.regFormContainer}>
       <form className={styles.regForm}>
