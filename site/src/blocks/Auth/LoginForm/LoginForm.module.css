@@ -86,3 +86,20 @@
   text-decoration: none;
   font-weight: 500;
 }
+
+.errorText {
+  color: #d93025;
+  text-align: left;
+  font-size: 0.9rem;
+  width: 100%;
+  margin-top: -10px;
+  margin-bottom: 12px;
+  margin-left: 2px;
+}
+
+.serverError {
+  padding: 12px;
+  margin-top: -30px;
+  width: 90%;
+  text-align: center;
+}

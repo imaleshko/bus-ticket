@@ -12,20 +12,13 @@ const SearchRoutes = ({ from, to, date }) => {
       suitableRoutes.push(route);
     }
   }
+
   return (
     <div className={styles.blockContainer}>
       <div className={styles.list}>
         {suitableRoutes.length > 0 ? (
           suitableRoutes.map((route) => (
-            <SearchRoute
-              key={route.id}
-              from={route.from}
-              to={route.to}
-              time={`${date} ${route.departureTime}`}
-              distance={route.distance}
-              duration={route.duration}
-              price={route.price}
-            />
+            <SearchRoute key={route.id} route={route} date={date} />
           ))
         ) : (
           <NotFound text={"За вашим запитом нічого не знайдено"} />

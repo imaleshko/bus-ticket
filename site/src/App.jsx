@@ -8,6 +8,9 @@ import Registration from "./pages/Auth/Registration/Registration.jsx";
 import AccountInfo from "./pages/Account/AccountInfo/AccountInfo.jsx";
 import AccountTickets from "./pages/Account/AccountTickets/AccountTickets.jsx";
 import PageNotFound from "./pages/PageNotFound/PageNotFound.jsx";
+import Info from "./pages/BookingForm/Info.jsx";
+import Data from "./pages/BookingForm/Data.jsx";
+import Success from "./pages/BookingForm/Success.jsx";
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="registration" element={<Registration />} />
         <Route path="accountinfo" element={<AccountInfo />} />
         <Route path="accounttickets" element={<AccountTickets />} />
+        <Route path="infoform" element={<Info />} />
+        <Route path="dataform" element={<Data />} />
+        <Route path="success" element={<Success />} />
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>
