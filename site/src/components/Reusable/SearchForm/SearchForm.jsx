@@ -7,6 +7,7 @@ const SearchForm = ({ initialFrom = "", initialTo = "", initialDate = "" }) => {
   const [to, setTo] = useState(initialTo);
   const [date, setDate] = useState(initialDate);
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const params = new URLSearchParams();
