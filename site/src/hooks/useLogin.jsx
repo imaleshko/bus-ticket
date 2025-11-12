@@ -1,21 +1,21 @@
-import { useMutation } from "@tanstack/react-query";
-import { registerUserMock } from "../mock/registerUserMock.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
+import { useMutation } from "@tanstack/react-query";
+import { loginUserMock } from "../mock/loginUserMock.jsx";
 
-export const useRegister = () => {
-  const { loginContext } = useAuth();
+export const useLogin = () => {
+  const {loginContext} = useAuth();
   const mutation = useMutation({
-    mutationFn: (data) => registerUserMock(data),
+    mutationFn: (data) => loginUserMock(data),
     onSuccess: ({ user, token }) => {
       loginContext({ user, token });
-    },
+    }
   });
 
   return {
-    register: mutation.mutate,
+    login: mutation.mutate,
     isPending: mutation.isPending,
     isSuccess: mutation.isSuccess,
     isError: mutation.isError,
     error: mutation.error,
-  };
-};
+  }
+}

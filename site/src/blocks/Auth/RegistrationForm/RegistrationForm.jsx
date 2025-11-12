@@ -59,11 +59,11 @@ const RegistrationForm = () => {
     <div className={styles.regFormContainer}>
       <form className={styles.regForm} onSubmit={handleSubmit}>
         <h2 className={styles.formTitle}>Реєстрація</h2>
-        {isError && (
+        {isError ? (
           <p className={`${styles.errorText} ${styles.serverError}`}>
             {error.message}
           </p>
-        )}
+        ) : null}
         <input
           type="text"
           placeholder="Ім'я"

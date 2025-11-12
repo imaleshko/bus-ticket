@@ -8,6 +8,6 @@ export const registerUserMock = async (data) => {
       name: data.name,
       email: data.email,
     },
-    token: "test_token",
+    token: "testToken",
   };
 };
