@@ -1,7 +1,9 @@
 const testUser = {
   "name": "testUser",
+  "surname": "testUserSurname",
   "email": "user@test.com",
-  "password": "123456789",
+  "phone": "+380685557777",
+  "password": "dertyhgftyujbtq72684",
   "id": "1234"
 }
 
@@ -13,7 +15,9 @@ export const loginUserMock = async (data) => {
     user: {
       id: testUser.id,
       name: testUser.name,
+      surname: testUser.surname,
       email: testUser.email,
+      phone: testUser.phone,
     },
     token: "testToken",
   };

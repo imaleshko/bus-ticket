@@ -6,7 +6,9 @@ import { useRegister } from "../../../hooks/useRegister.jsx";
 const RegistrationForm = () => {
   const [data, setData] = useState({
     name: "",
+    surname: "",
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
     terms: false,
@@ -42,7 +44,9 @@ const RegistrationForm = () => {
     }
     register({
       name: data.name,
+      surname: data.surname,
       email: data.email,
+      phone: data.phone,
       password: data.password,
     });
   };
@@ -74,11 +78,29 @@ const RegistrationForm = () => {
           required
         />
         <input
+          type="text"
+          placeholder="Прізвище"
+          className={styles.formInput}
+          name="surname"
+          value={data.surname}
+          onChange={handleChange}
+          required
+        />
+        <input
           type="email"
           placeholder="Email"
           className={styles.formInput}
           name="email"
           value={data.email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="tel"
+          placeholder="Номер телефону"
+          className={styles.formInput}
+          name="phone"
+          value={data.phone}
           onChange={handleChange}
           required
         />

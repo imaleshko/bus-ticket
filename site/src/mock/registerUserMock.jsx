@@ -6,7 +6,9 @@ export const registerUserMock = async (data) => {
     user: {
       id: "1",
       name: data.name,
+      surname: data.surname,
       email: data.email,
+      phone: data.phone,
     },
     token: "testToken",
   };
