@@ -6,26 +6,26 @@ import { useLogin } from "../../../hooks/useLogin.jsx";
 const LoginForm = () => {
   const [data, setData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const { login, isPending, isSuccess, isError, error } = useLogin();
 
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     const { name, value, type } = e.target;
     setData((prevData) => ({
       ...prevData,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     login({
       email: data.email,
       password: data.password,
-    })
-  }
+    });
+  };
 
   const navigate = useNavigate();
 
@@ -71,7 +71,11 @@ const LoginForm = () => {
             Забули пароль?
           </a>
         </div>
-        <button type={"submit"} className={styles.submitButton} disabled={isPending}>
+        <button
+          type={"submit"}
+          className={styles.submitButton}
+          disabled={isPending}
+        >
           Увійти
         </button>
         <div className={styles.signupLink}>

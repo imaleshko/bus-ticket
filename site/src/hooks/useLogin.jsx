@@ -3,12 +3,12 @@ import { useMutation } from "@tanstack/react-query";
 import { loginUserMock } from "../mock/loginUserMock.jsx";
 
 export const useLogin = () => {
-  const {loginContext} = useAuth();
+  const { loginContext } = useAuth();
   const mutation = useMutation({
     mutationFn: (data) => loginUserMock(data),
     onSuccess: ({ user, token }) => {
       loginContext({ user, token });
-    }
+    },
   });
 
   return {
@@ -17,5 +17,5 @@ export const useLogin = () => {
     isSuccess: mutation.isSuccess,
     isError: mutation.isError,
     error: mutation.error,
-  }
-}
+  };
+};

@@ -6,7 +6,7 @@ const AccountSidebar = () => {
   const active = ({ isActive }) => {
     return `${styles.link} ${isActive ? styles.active : ""}`;
   };
-  const { logoutContext } = useAuth()
+  const { logoutContext } = useAuth();
   return (
     <nav className={styles.sidebar}>
       <NavLink to="/accountinfo" className={active}>

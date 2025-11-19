@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const loginContext = ({user, token}) => {
+  const loginContext = ({ user, token }) => {
     setAuth({
       user: user,
       token: token,

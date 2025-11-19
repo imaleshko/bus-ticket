@@ -1,11 +1,11 @@
 const testUser = {
-  "name": "testUser",
-  "surname": "testUserSurname",
-  "email": "user@test.com",
-  "phone": "+380685557777",
-  "password": "dertyhgftyujbtq72684",
-  "id": "1234"
-}
+  name: "testUser",
+  surname: "testUserSurname",
+  email: "user@test.com",
+  phone: "+380685557777",
+  password: "dertyhgftyujbtq72684",
+  id: "1234",
+};
 
 export const loginUserMock = async (data) => {
   if (data.email !== testUser.email || data.password !== testUser.password) {
@@ -21,4 +21,4 @@ export const loginUserMock = async (data) => {
     },
     token: "testToken",
   };
-}
+};

@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.busBody {
+    border: 1px solid #000;
+    border-radius: 12px;
+    padding: 18px;
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.driverRow {
+    height: 40px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.driveSeat {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    position: absolute;
+}
+
+.divider {
+    height: 1px;
+    background-color: #000;
+    margin: 10px 0 20px 0;
+    width: 100%;
+}
+
+.seats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 12px;
+    column-gap: 4px;
+}
+
+.seat:nth-of-type(4n + 2) {
+    margin-right: 25px;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0;
+}
+
+.available {
+    background-color: #7E9181;
+}
+
+.available:hover {
+    background-color: #7a8a7c;
+}
+
+.booked {
+    background-color: #E84A36;
+    cursor: not-allowed;
+    color: #fff;
+}
+
+.selected {
+    background-color: #4A5D4E;
+    color: white;
+    border: 2px solid #000;
+}

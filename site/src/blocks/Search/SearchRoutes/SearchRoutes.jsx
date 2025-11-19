@@ -12,6 +12,7 @@ const SearchRoutes = ({ from, to, date }) => {
       suitableRoutes.push(route);
     }
   }
+
   return (
     <div className={styles.blockContainer}>
       <div className={styles.list}>

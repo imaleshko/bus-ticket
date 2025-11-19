@@ -5,7 +5,7 @@ import user from "../../assets/header/user.png";
 import { useAuth } from "../../context/AuthContext.jsx";
 
 const Header = () => {
-  const { isAuth } = useAuth()
+  const { isAuth } = useAuth();
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logo}>
@@ -36,7 +36,6 @@ const Header = () => {
             </>
           )}
         </div>
-
       </div>
     </header>
   );

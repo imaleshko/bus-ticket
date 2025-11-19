@@ -40,8 +40,8 @@
 }
 
 .login {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .login img {
@@ -50,7 +50,7 @@
 }
 
 .authLinks {
-    display: flex;
-    align-items: center;
-    gap: 30px
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
