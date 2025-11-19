@@ -12,33 +12,34 @@ const AccountTickets = () => {
   useEffect(() => {
     if (user) {
       const saveTickets = JSON.parse(localStorage.getItem("tickets")) || [];
-      const myTickets = saveTickets.filter(ticket => ticket.userId === user.email);
+      const myTickets = saveTickets.filter(
+        (ticket) => ticket.userId === user.email,
+      );
       setTickets(myTickets);
     }
-  }, [user])
+  }, [user]);
 
   return (
     <div className={styles.pageContainer}>
       <AccountSidebar activePage="Tickets" />
       <div className={styles.contentArea}>
-        {
-          tickets.length === 0 ? (
-            <p className={styles.empty}>У вас поки немає придбаних квитків.</p>
-          ) : (
-            tickets.map((ticket) => {
-              const routeDetails = test_data.find(route => route.id === ticket.routeId);
-              return (
-                <AccountTicket
-                  key={ticket.id}
-                  from={routeDetails.from}
-                  to={routeDetails.to}
-                  date={ticket.date}
-                />
-              )
-            })
-
-          )
-        }
+        {tickets.length === 0 ? (
+          <p className={styles.empty}>У вас поки немає придбаних квитків.</p>
+        ) : (
+          tickets.map((ticket) => {
+            const routeDetails = test_data.find(
+              (route) => route.id === ticket.routeId,
+            );
+            return (
+              <AccountTicket
+                key={ticket.id}
+                from={routeDetails.from}
+                to={routeDetails.to}
+                date={ticket.date}
+              />
+            );
+          })
+        )}
       </div>
     </div>
   );

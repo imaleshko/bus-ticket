@@ -9,7 +9,7 @@ const SearchRoute = ({ route, date }) => {
 
   const navigate = useNavigate();
 
-  const {isAuth} = useAuth();
+  const { isAuth } = useAuth();
 
   const handleClick = () => {
     if (isAuth) {
@@ -17,15 +17,15 @@ const SearchRoute = ({ route, date }) => {
         pathname: "/infoform",
         search: createSearchParams({
           id: id,
-          date: date
-        }).toString()
+          date: date,
+        }).toString(),
       });
     } else {
       navigate({
         pathname: "/login",
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className={styles.card}>

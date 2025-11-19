@@ -1,4 +1,4 @@
-import styles from './InfoForm.module.css';
+import styles from "./InfoForm.module.css";
 import BookingHeader from "../../../components/BookingForm/BookingHeader/BookingHeader.jsx";
 import RouteInfo from "../../../components/BookingForm/RouteInfo/RouteInfo.jsx";
 import SeatChoose from "../../../components/BookingForm/SeatChoose/SeatChoose.jsx";
@@ -19,7 +19,7 @@ const InfoForm = () => {
 
   const handleSeatClick = (id) => {
     if (selectedSeats.includes(id)) {
-      setSelectedSeats(selectedSeats.filter(seatId => seatId !== id));
+      setSelectedSeats(selectedSeats.filter((seatId) => seatId !== id));
     } else {
       setSelectedSeats([...selectedSeats, id]);
     }
@@ -29,48 +29,48 @@ const InfoForm = () => {
 
   const navigate = useNavigate();
   const handleContinue = () => {
-    navigate(
-      {
-        pathname: "/dataform",
-        search: createSearchParams({
-          id: id,
-          date: date,
-          count: ticketCount,
-          seats: selectedSeats.join(","),
-        }).toString(),
-      },
-    );
-  }
+    navigate({
+      pathname: "/dataform",
+      search: createSearchParams({
+        id: id,
+        date: date,
+        count: ticketCount,
+        seats: selectedSeats.join(","),
+      }).toString(),
+    });
+  };
 
   if (!route) {
     return (
       <div className={styles.bookingForm}>
         <NotFound text="Маршрут не знайдено" />
       </div>
-    )
+    );
   }
 
   const { from, to } = route;
 
   return (
-      <div className={styles.bookingForm}>
-        <BookingHeader from={from} to={to} date={date}/>
-        <div className={styles.mainContent}>
-          <div className={styles.leftColumn}>
-            <RouteInfo ticketCount={ticketCount} route={route}/>
-          </div>
-          <div className={styles.rightColumn}>
-            <SeatChoose
-              selectedSeats={selectedSeats}
-              handleSeatClick={handleSeatClick}
-            />
-          </div>
+    <div className={styles.bookingForm}>
+      <BookingHeader from={from} to={to} date={date} />
+      <div className={styles.mainContent}>
+        <div className={styles.leftColumn}>
+          <RouteInfo ticketCount={ticketCount} route={route} />
         </div>
-        <div className={styles.footer}>
-          <Button onClick={handleContinue} disabled={ticketCount === 0}>Продовжити</Button>
+        <div className={styles.rightColumn}>
+          <SeatChoose
+            selectedSeats={selectedSeats}
+            handleSeatClick={handleSeatClick}
+          />
         </div>
       </div>
-  )
+      <div className={styles.footer}>
+        <Button onClick={handleContinue} disabled={ticketCount === 0}>
+          Продовжити
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 export default InfoForm;

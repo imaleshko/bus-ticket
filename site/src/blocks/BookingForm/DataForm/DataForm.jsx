@@ -1,4 +1,4 @@
-import styles from "./DataForm.module.css"
+import styles from "./DataForm.module.css";
 import BookingHeader from "../../../components/BookingForm/BookingHeader/BookingHeader.jsx";
 import RouteTimeline from "../../../components/BookingForm/RouteTimeline/RouteTimeline.jsx";
 import Button from "../../../ui/Button/Button.jsx";
@@ -33,17 +33,17 @@ const DataForm = () => {
       surname: user.surname,
       email: user.email,
       phone: user.phone,
-    })
+    });
   }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
-  }
+  };
 
   const handleSubmit = () => {
     const newTicket = {
-      id: Math.random()*100,
+      id: Math.random() * 100,
       routeId: route.id,
       userId: user?.email,
       date: date,
@@ -56,14 +56,14 @@ const DataForm = () => {
     localStorage.setItem("tickets", JSON.stringify(updatedTickets));
 
     navigate("/success");
-  }
+  };
 
   if (!route) {
     return (
       <div className={styles.dataForm}>
         <NotFound text="Маршрут не знайдено" />
       </div>
-    )
+    );
   }
 
   const totalPrice = route.price * count;
@@ -71,7 +71,7 @@ const DataForm = () => {
 
   return (
     <div className={styles.dataForm}>
-      <BookingHeader from={from} to={to} date={date}/>
+      <BookingHeader from={from} to={to} date={date} />
       <div className={styles.content}>
         <div className={styles.table}>
           <input
@@ -109,7 +109,7 @@ const DataForm = () => {
         </div>
         <div className={styles.rightColumn}>
           <div className={styles.timelineWrapper}>
-            <RouteTimeline route={route}/>
+            <RouteTimeline route={route} />
           </div>
           <div className={styles.ticketCount}>{count} квиток(ів)</div>
           <div className={styles.price}>{totalPrice} грн</div>
@@ -118,14 +118,16 @@ const DataForm = () => {
       <div className={styles.footer}>
         <label className={styles.checkboxLabel}>
           <input type="checkbox" className={styles.checkbox} />
-          <span className={styles.checkboxText}>Я погоджуюсь з умовами користування</span>
+          <span className={styles.checkboxText}>
+            Я погоджуюсь з умовами користування
+          </span>
         </label>
         <div className={styles.button} onClick={handleSubmit}>
           <Button>До оплати</Button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default DataForm;

@@ -1,4 +1,4 @@
-import styles from "./SuccessForm.module.css"
+import styles from "./SuccessForm.module.css";
 import { Link } from "react-router";
 
 const SuccessForm = () => {
@@ -14,7 +14,7 @@ const SuccessForm = () => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SuccessForm
+export default SuccessForm;

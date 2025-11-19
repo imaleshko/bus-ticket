@@ -1,9 +1,7 @@
 import SuccessForm from "../../blocks/BookingForm/SuccessForm/SuccessForm.jsx";
 
 const Success = () => {
-  return (
-    <SuccessForm/>
-  )
-}
+  return <SuccessForm />;
+};
 
 export default Success;

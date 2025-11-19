@@ -1,6 +1,6 @@
-import styles from "./RouteTimeline.module.css"
+import styles from "./RouteTimeline.module.css";
 const RouteTimeline = ({ route }) => {
-  const {from, to, departureTime, arrivalTime} = route;
+  const { from, to, departureTime, arrivalTime } = route;
   return (
     <div className={styles.timelineContainer}>
       <div className={styles.item}>

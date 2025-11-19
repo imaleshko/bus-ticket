@@ -1,9 +1,7 @@
 import DataForm from "../../blocks/BookingForm/DataForm/DataForm.jsx";
 
 const Data = () => {
-  return (
-    <DataForm />
-  )
-}
+  return <DataForm />;
+};
 
 export default Data;

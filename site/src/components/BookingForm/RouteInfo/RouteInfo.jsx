@@ -1,15 +1,15 @@
-import styles from "./RouteInfo.module.css"
+import styles from "./RouteInfo.module.css";
 import RouteTimeline from "../RouteTimeline/RouteTimeline.jsx";
 
 const RouteInfo = ({ ticketCount, route }) => {
-  const {duration, price} = route;
+  const { duration, price } = route;
 
   const totalPrice = price * ticketCount;
 
   return (
     <div className={styles.container}>
       <div className={styles.timeline}>
-        <RouteTimeline route={route}/>
+        <RouteTimeline route={route} />
       </div>
       <div className={styles.details}>
         <p>Час в дорозі: {duration}</p>
@@ -22,13 +22,13 @@ const RouteInfo = ({ ticketCount, route }) => {
             value={ticketCount}
             readOnly
             className={styles.inputTicket}
-            />
+          />
           <p className={styles.tickets}>квиток(ів)</p>
         </div>
         <p className={styles.price}>{totalPrice} грн</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default RouteInfo;
