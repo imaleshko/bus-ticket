@@ -1,19 +1,18 @@
 import styles from "./RouteInfo.module.css"
 import RouteTimeline from "../RouteTimeline/RouteTimeline.jsx";
-import { useState } from "react";
 
-const RouteInfo = ({ ticketCount }) => {
-  const price = 700;
+const RouteInfo = ({ ticketCount, route }) => {
+  const {duration, price} = route;
 
   const totalPrice = price * ticketCount;
 
   return (
     <div className={styles.container}>
       <div className={styles.timeline}>
-        <RouteTimeline />
+        <RouteTimeline route={route}/>
       </div>
       <div className={styles.details}>
-        <p>Час в дорозі: 4.30</p>
+        <p>Час в дорозі: {duration}</p>
         <p>Транспорт: Iveco Crossway</p>
       </div>
       <div className={styles.footer}>

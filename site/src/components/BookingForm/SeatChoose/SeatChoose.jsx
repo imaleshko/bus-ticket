@@ -49,7 +49,7 @@ const SeatChoose = ({ selectedSeats, handleSeatClick }) => {
               <button
                 key={seat.id}
                 className={seatClass}
-                onClick={() => handleSeatClick(seat.id, seat.status)}
+                onClick={() => handleSeatClick(seat.id)}
                 disabled={seat.status === "booked"}>
                 {seat.id}
               </button>

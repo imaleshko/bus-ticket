@@ -1,7 +1,32 @@
 import styles from "./SearchRoute.module.css";
 import Button from "../../../ui/Button/Button.jsx";
+import { createSearchParams, useNavigate } from "react-router";
+import { useAuth } from "../../../context/AuthContext.jsx";
 
-const SearchRoute = ({ from, to, time, distance, duration, price }) => {
+const SearchRoute = ({ route, date }) => {
+  const { id, from, to, departureTime, distance, duration, price } = route;
+  const time = `${date} ${departureTime}`;
+
+  const navigate = useNavigate();
+
+  const {isAuth} = useAuth();
+
+  const handleClick = () => {
+    if (isAuth) {
+      navigate({
+        pathname: "/infoform",
+        search: createSearchParams({
+          id: id,
+          date: date
+        }).toString()
+      });
+    } else {
+      navigate({
+        pathname: "/login",
+      })
+    }
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.info}>
@@ -19,7 +44,7 @@ const SearchRoute = ({ from, to, time, distance, duration, price }) => {
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <Button>Забронювати</Button>
+        <Button onClick={handleClick}>Забронювати</Button>
       </div>
     </div>
   );
