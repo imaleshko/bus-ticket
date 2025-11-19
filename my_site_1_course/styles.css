@@ -1,182 +1,180 @@
 * {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
-
+ 
 header {
-  background-color: green;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    background-color: green;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo-container {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .company-name {
-  margin-left: 10px;
-  font-size: 24px;
-  color: white;
+    margin-left: 10px;
+    font-size: 24px;
+    color: white;
 }
 
-.links_header,
-.login_links_header {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
+.links_header, .login_links_header {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
 }
 
 .user_icon {
-  width: 30px;
-  vertical-align: middle;
+    width: 30px;
+    vertical-align: middle;
 }
 
 @media (max-width: 610px) {
-  .login_links_header {
-    display: none;
-  }
+    .login_links_header {
+        display: none;
+    }
 
-  .table {
-    font-size: 10px;
-  }
+    .table {
+        font-size: 10px;
+    }
 
-  .button {
-    font-size: 10px;
-  }
+    .button {
+        font-size: 10px;
+    }
 }
 
 .day p {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
 }
 
 table {
-  width: 80%;
-  margin: 0 auto;
-  border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 5px;
 }
 
-th,
-td {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #dbd6d6;
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #dbd6d6;
 }
 
 th {
-  background-color: #4caf50;
-  color: white;
-  font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
 }
 
 button {
-  padding: 8px 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 button:hover {
-  background-color: #358539;
+    background-color: #358539;
 }
 
 .advantages {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  background-color: #f1eded;
-  padding: 20px;
-  margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #f1eded;
+    padding: 20px;
+    margin-bottom: 30px;
 }
 
 .advantages_name {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 20px;
-  font-size: 30px;
-  font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .advantage {
-  text-align: center;
-  margin: 10px;
-  width: 150px;
+    text-align: center;
+    margin: 10px;
+    width: 150px;
 }
 
 .advantage img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 10px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
 }
 
 .why_we_h {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 30px;
-  font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .why_we_text {
-  text-align: center;
-  text-align: justify;
+    text-align: center;
+    text-align: justify;
 }
 
 .image-container {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .image {
-  width: 49%;
-  height: auto;
+    width: 49%;
+    height: auto;
 }
 
 .footer {
-  background-color: green;
-  padding: 20px;
-  margin-top: 10px;
-  color: white;
-  text-align: center;
+    background-color: green;
+    padding: 20px;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
 }
 
 .footer_h {
-  margin: 10px;
-  font-size: 24px;
+    margin: 10px;
+    font-size: 24px;
 }
 
 .footer_email {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 .message_send {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
 }
 
 .message_button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
 }
 
 #messageForm {
-  display: none;
-  position: absolute;
-  bottom: 50px;
-  right: 0;
-  width: 250px;
-  background-color: #f1eded;
-  padding: 15px;
-  border-radius: 5px;
+    display: none;
+    position: absolute;
+    bottom: 50px;
+    right: 0;
+    width: 250px;
+    background-color: #f1eded;
+    padding: 15px;
+    border-radius: 5px;
 }
