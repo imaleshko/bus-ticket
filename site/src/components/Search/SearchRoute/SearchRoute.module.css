@@ -1,0 +1,45 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #000;
+  border-radius: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.row {
+  display: flex;
+}
+
+.row:first-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.routeCell,
+.detailsCell,
+.timeCell,
+.priceCell {
+  padding: 8px 16px;
+}
+
+.routeCell,
+.timeCell {
+  border-right: 1px solid #e0e0e0;
+  flex: 3;
+}
+
+.detailsCell,
+.priceCell {
+  flex: 2;
+}
+
+.buttonContainer {
+  padding: 0 12px;
+}
