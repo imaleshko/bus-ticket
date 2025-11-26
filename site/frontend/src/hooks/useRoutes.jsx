@@ -6,24 +6,23 @@ export const useRoutes = (from, to) => {
 
   useEffect(() => {
     if (!from || !to) {
-      setRoutes([])
+      setRoutes([]);
       return;
     }
 
     const getData = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/routes",
-          {params: {from, to}}
-        )
+        const response = await axios.get("http://localhost:3000/api/routes", {
+          params: { from, to },
+        });
         setRoutes(response.data);
       } catch (error) {
         console.error(error);
       }
-    }
+    };
     void getData();
   }, [from, to]);
   return routes;
-}
+};
 
 export default useRoutes;
