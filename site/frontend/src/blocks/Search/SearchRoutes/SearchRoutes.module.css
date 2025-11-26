@@ -1,0 +1,13 @@
+.blockContainer {
+  border-radius: 16px;
+  padding: 16px;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
