@@ -2,6 +2,7 @@ import SearchRoute from "../../../components/Search/SearchRoute/SearchRoute.jsx"
 import NotFound from "../../../components/NotFound/NotFound.jsx";
 import styles from "./SearchRoutes.module.css";
 import useRoutes from "@/hooks/useRoutes.jsx";
+
 const SearchRoutes = ({ from, to, date }) => {
   const routes = useRoutes(from, to);
 

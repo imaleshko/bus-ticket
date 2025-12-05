@@ -6,9 +6,9 @@ const PopularRoutes = () => {
     <div className={styles.popular}>
       <h3 className={styles.title}>Популярне</h3>
       <div className={styles.list}>
-        <PopularRoute from="Ужгород" to="Львів" frequency="Щодня" />
-        <PopularRoute from="Ужгород" to="Київ" frequency="Щодня" />
-        <PopularRoute from="Ужгород" to="Одеса" frequency="Щодня" />
+        <PopularRoute id="r1" from="Ужгород" to="Львів" frequency="08.00, щодня" />
+        <PopularRoute id="r6" from="Ужгород" to="Львів" frequency="18.00, щодня" />
+        <PopularRoute id="r7" from="Ужгород" to="Київ" frequency="08.00, щодня" />
       </div>
     </div>
   );
