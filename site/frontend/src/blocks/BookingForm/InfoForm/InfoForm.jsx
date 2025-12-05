@@ -10,20 +10,20 @@ import axios from "axios";
 
 const InfoForm = () => {
   const [searchParams] = useSearchParams();
-  const id = searchParams.get("id");
+  const routeId = searchParams.get("routeId");
   const date = searchParams.get("date");
 
   const [route, setRoute] = useState(null);
 
   useEffect(() => {
-    if (!id || !date) {
+    if (!routeId || !date) {
       return;
     }
 
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/routes/${id}`,
+          `http://localhost:3000/api/routes/${routeId}`,
           {
             params: { date: date },
           },
@@ -35,7 +35,7 @@ const InfoForm = () => {
       }
     };
     void fetchData();
-  }, [id, date]);
+  }, [routeId, date]);
 
   const [selectedSeats, setSelectedSeats] = useState([]);
 
@@ -52,10 +52,11 @@ const InfoForm = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
+    if (ticketCount === 0) return;
     navigate({
       pathname: "/dataform",
       search: createSearchParams({
-        id: id,
+        routeId: routeId,
         date: date,
         count: ticketCount,
         seats: selectedSeats.join(","),
@@ -90,7 +91,7 @@ const InfoForm = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        <Button onClick={handleContinue} disabled={ticketCount === 0}>
+        <Button onClick={handleContinue}>
           Продовжити
         </Button>
       </div>

@@ -5,11 +5,18 @@ import istanbul from 'vite-plugin-istanbul'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),
+  plugins: [
+    react(),
     istanbul({
       cypress: true,
       requireEnv: false,
-    }),],
+    }),
+  ],
+
+  build: {
+    sourcemap: true,
+  },
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

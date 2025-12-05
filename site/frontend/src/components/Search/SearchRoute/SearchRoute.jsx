@@ -4,7 +4,7 @@ import { createSearchParams, useNavigate } from "react-router";
 import { useAuth } from "@/context/AuthContext.jsx";
 
 const SearchRoute = ({ route, date }) => {
-  const { id, from, to, departureTime, distance, duration, price } = route;
+  const { routeId, from, to, departureTime, distance, duration, price } = route;
   const time = `${date} ${departureTime}`;
 
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const SearchRoute = ({ route, date }) => {
       navigate({
         pathname: "/infoform",
         search: createSearchParams({
-          id: id,
+          routeId: routeId,
           date: date,
         }).toString(),
       });

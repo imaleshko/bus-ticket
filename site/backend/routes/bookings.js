@@ -28,13 +28,14 @@ router.post('/', async (req, res) => {
             routeId,
             date,
             seats,
-            price,
             email,
             from: routeInfo.from,
             to: routeInfo.to,
             departureTime: routeInfo.departureTime,
             arrivalTime: routeInfo.arrivalTime,
+            distance: routeInfo.distance,
             duration: routeInfo.duration,
+            price: routeInfo.price,
             transport: routeInfo.transport,
         })
 
@@ -48,7 +49,7 @@ router.post('/', async (req, res) => {
 
         res.status(201).json(newBooking);
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         res.status(500).json({ message: "Помилка сервера" });
     }
 })

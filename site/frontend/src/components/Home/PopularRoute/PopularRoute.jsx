@@ -33,7 +33,6 @@ const PopularRoute = ({ id, from, to, frequency }) => {
     }
   };
 
-
   return (
     <div className={styles.container}>
       <div className={styles.starIcon}>
