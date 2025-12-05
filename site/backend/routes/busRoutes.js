@@ -1,46 +1,59 @@
 const express = require('express');
 const router = express.Router();
-const { busRoutesData } = require('../mock_data/busRoutesData');
-const { bookingsData } = require('../mock_data/bookingsData');
+const BusRoute = require('../schemes/busRoute');
+const Booking = require("../schemes/booking");
 
-router.get('/', (req, res) => {
-    const { from, to } = req.query;
-    let routes = busRoutesData;
+router.get('/', async (req, res) => {
+    try {
+        const {from, to} = req.query;
 
-    if (from) {
-        routes = routes.filter((route) => route.from.toLowerCase() === from.toLowerCase());
+        let query = {};
+        if (from) {
+            query.from = from;
+        }
+        if (to) {
+            query.to = to;
+        }
+
+        const routes = await BusRoute.find(query);
+
+        res.json(routes);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Помилка сервера" });
     }
-    if (to) {
-        routes = routes.filter((route) => route.to.toLowerCase() === to.toLowerCase());
-    }
-
-    res.json(routes);
 })
 
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
-    const { date } = req.query;
+router.get('/:routeId', async (req, res) => {
+    try {
+        const {routeId} = req.params;
+        const {date} = req.query;
 
-    const bus_route = busRoutesData.find((route) => route.id === id);
+        const bus_route = await BusRoute.findOne({routeId})
 
-    if (!bus_route) {
-        res.status(404).send('No bus route found');
-        return;
+        if (!bus_route) {
+            res.status(404).send('Маршрут не знайдено');
+            return;
+        }
+
+        const bookings = await Booking.find({routeId, date})
+
+        let bookingSeats = []
+
+        bookings.forEach(booking => {
+            bookingSeats = [
+                ...bookingSeats, ...booking.seats,
+            ]
+        })
+
+        res.json({
+            ...bus_route.toObject(),
+            bookingSeats,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Помилка сервера" });
     }
-
-    const bookings = bookingsData.filter(booking => booking.routeId === id && booking.date === date);
-
-    let bookingSeats = []
-    bookings.forEach(booking => {
-        bookingSeats = [
-            ...bookingSeats, ...booking.seats,
-        ]
-    })
-
-    res.json({
-        ...bus_route,
-        bookingSeats,
-    });
 })
 
 module.exports = router;
