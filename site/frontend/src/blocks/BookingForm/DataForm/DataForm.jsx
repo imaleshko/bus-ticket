@@ -13,7 +13,7 @@ const DataForm = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const id = searchParams.get("id");
+  const routeId = searchParams.get("routeId");
   const date = searchParams.get("date");
   const count = Number(searchParams.get("count"));
   const seats = searchParams.get("seats")
@@ -45,14 +45,14 @@ const DataForm = () => {
   }, [user]);
 
   useEffect(() => {
-    if (!id || !date) {
+    if (!routeId || !date) {
       return;
     }
 
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/routes/${id}`,
+          `http://localhost:3000/api/routes/${routeId}`,
           {
             params: { date: date },
           },
@@ -64,7 +64,7 @@ const DataForm = () => {
       }
     };
     void fetchData();
-  }, [id, date]);
+  }, [routeId, date]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,10 +73,9 @@ const DataForm = () => {
 
   const handleSubmit = () => {
     const bookingData = {
-      routeId: route.id,
+      routeId: route.routeId,
       date: date,
       seats: seats,
-      price: route.price * count,
       email: data.email,
     };
 

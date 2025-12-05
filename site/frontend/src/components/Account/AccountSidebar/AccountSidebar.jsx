@@ -1,6 +1,6 @@
 import styles from "./AccountSidebar.module.css";
 import { Link, NavLink } from "react-router";
-import { useAuth } from "../../../context/AuthContext.jsx";
+import { useAuth } from "@/context/AuthContext.jsx";
 
 const AccountSidebar = () => {
   const active = ({ isActive }) => {
