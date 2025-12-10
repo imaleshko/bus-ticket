@@ -36,15 +36,9 @@ router.get('/:routeId', async (req, res) => {
             return;
         }
 
-        const bookings = await Booking.find({routeId, date})
+        const bookings = await Booking.find({routeId, date}).select('seat');
 
-        let bookingSeats = []
-
-        bookings.forEach(booking => {
-            bookingSeats = [
-                ...bookingSeats, ...booking.seats,
-            ]
-        })
+        let bookingSeats = bookings.map(booking => booking.seat);
 
         res.json({
             ...bus_route.toObject(),

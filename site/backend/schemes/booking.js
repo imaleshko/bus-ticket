@@ -9,8 +9,8 @@ const bookingSchema = new mongoose.Schema ({
         type: String,
         required: true,
     },
-    seats: {
-        type: [Number],
+    seat: {
+        type: Number,
         required: true,
     },
     email: {
@@ -19,36 +19,38 @@ const bookingSchema = new mongoose.Schema ({
     },
     from: {
         type: String,
-        required: true,
+        required: true
     },
     to: {
         type: String,
-        required: true,
+        required: true
     },
     departureTime: {
         type: String,
-        required: true,
+        required: true
     },
     arrivalTime: {
         type: String,
-        required: true,
+        required: true
     },
     distance: {
         type: Number,
-        required: true,
+        required: true
     },
     duration: {
         type: Number,
-        required: true,
+        required: true
     },
     price: {
         type: Number,
-        required: true,
+        required: true
     },
     transport: {
         type: String,
-        required: true,
+        required: true
     },
-})
+}, { timestamps: true });
+
+bookingSchema.index({routeId: 1, date: 1, seat: 1}, {unique: true});
 
 module.exports = mongoose.model('booking', bookingSchema);
