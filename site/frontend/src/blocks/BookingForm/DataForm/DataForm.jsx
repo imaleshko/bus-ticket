@@ -15,16 +15,13 @@ const DataForm = () => {
 
   const routeId = searchParams.get("routeId");
   const date = searchParams.get("date");
-  const count = Number(searchParams.get("count"));
-  const seats = searchParams.get("seats")
-    ? searchParams.get("seats").split(",").map(Number)
-    : [];
+  const seat = Number(searchParams.get("seat"));
 
   const [route, setRoute] = useState(null);
 
   const { createBooking, isError, error } = useBooking();
 
-  const { user, loginContext } = useAuth();
+  const { user } = useAuth();
 
   const [data, setData] = useState({
     name: "",
@@ -75,17 +72,12 @@ const DataForm = () => {
     const bookingData = {
       routeId: route.routeId,
       date: date,
-      seats: seats,
+      seat: seat,
       email: data.email,
     };
 
     createBooking(bookingData, {
-      onSuccess: (newTicket) => {
-        const updatedUser = {
-          ...user,
-          tickets: [...(user.tickets || []), newTicket],
-        };
-        loginContext({ user: updatedUser });
+      onSuccess: () => {
         navigate("/success");
       },
     });
@@ -99,7 +91,6 @@ const DataForm = () => {
     );
   }
 
-  const totalPrice = route.price * count;
   const { from, to } = route;
 
   return (
@@ -145,13 +136,12 @@ const DataForm = () => {
           <div className={styles.timelineWrapper}>
             <RouteTimeline route={route} />
           </div>
-          <div className={styles.ticketCount}>{count} квиток(ів)</div>
-          <div className={styles.price}>{totalPrice} грн</div>
+          <div className={styles.price}>{route.price} грн</div>
         </div>
       </div>
       <div className={styles.footer}>
-        <div className={styles.button} onClick={handleSubmit}>
-          <Button>До оплати</Button>
+        <div className={styles.button}>
+          <Button onClick={handleSubmit}>До оплати</Button>
         </div>
       </div>
     </div>

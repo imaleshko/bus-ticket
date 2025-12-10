@@ -37,29 +37,26 @@ const InfoForm = () => {
     void fetchData();
   }, [routeId, date]);
 
-  const [selectedSeats, setSelectedSeats] = useState([]);
+  const [selectedSeat, setSelectedSeat] = useState(null);
 
   const handleSeatClick = (seat) => {
-    if (selectedSeats.includes(seat)) {
-      setSelectedSeats(selectedSeats.filter((id) => id !== seat));
+    if (selectedSeat === seat) {
+      setSelectedSeat(null);
     } else {
-      setSelectedSeats([...selectedSeats, seat]);
+      setSelectedSeat(seat);
     }
   };
-
-  const ticketCount = selectedSeats.length;
 
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    if (ticketCount === 0) return;
+    if (!selectedSeat) return;
     navigate({
       pathname: "/dataform",
       search: createSearchParams({
         routeId: routeId,
         date: date,
-        count: ticketCount,
-        seats: selectedSeats.join(","),
+        seat: selectedSeat,
       }).toString(),
     });
   };
@@ -79,11 +76,11 @@ const InfoForm = () => {
       <BookingHeader from={from} to={to} date={date} />
       <div className={styles.mainContent}>
         <div className={styles.leftColumn}>
-          <RouteInfo ticketCount={ticketCount} route={route} />
+          <RouteInfo route={route} />
         </div>
         <div className={styles.rightColumn}>
           <SeatChoose
-            selectedSeats={selectedSeats}
+            selectedSeats={selectedSeat}
             handleSeatClick={handleSeatClick}
             totalSeats={route.totalSeats}
             bookingSeats={route.bookingSeats}

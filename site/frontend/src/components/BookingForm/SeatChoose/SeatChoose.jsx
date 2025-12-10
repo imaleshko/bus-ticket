@@ -6,7 +6,10 @@ const SeatChoose = ({
   totalSeats,
   bookingSeats = [],
 }) => {
-  const seatsList = Array.from({ length: totalSeats }, (_, i) => i + 1);
+  const seatsList = [];
+  for (let i = 0; i < totalSeats; i++) {
+    seatsList.push(i + 1);
+  }
 
   return (
     <div className={styles.container}>
@@ -20,7 +23,7 @@ const SeatChoose = ({
         <div className={styles.seats}>
           {seatsList.map((seat) => {
             const isBooked = bookingSeats.includes(seat);
-            const isSelected = selectedSeats.includes(seat);
+            const isSelected = selectedSeats === seat;
 
             let seatClass;
             if (isBooked) {
