@@ -1,45 +1,59 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import api, { setAccessToken } from "@/api/axios.js";
 
 export const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
+    accessToken: "",
     user: null,
-    // user: {
-    //   id: testUser.id,
-    //   name: testUser.name,
-    //   surname: testUser.surname,
-    //   email: testUser.email,
-    //   phone: testUser.phone,
-    // },
     isAuth: false,
+    isLoading: true,
   });
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-
-    if (user) {
-      setAuth({
-        user: JSON.parse(user),
-        isAuth: true,
-      });
-    }
-  }, []);
-
-  const loginContext = ({ user }) => {
+  const loginContext = ({ accessToken, user }) => {
     setAuth({
-      user: user,
+      accessToken,
+      user,
       isAuth: true,
+      isLoading: false,
     });
-    localStorage.setItem("user", JSON.stringify(user));
+    setAccessToken(accessToken);
   };
 
   const logoutContext = () => {
     setAuth({
+      accessToken: "",
       user: null,
       isAuth: false,
     });
-    localStorage.removeItem("user");
+    setAccessToken('');
   };
+
+  useEffect(() => {
+    const checkAuth = async () => {
+        try {
+          const response = await api.get('auth/refresh', {
+          });
+          setAuth({
+            accessToken: response.data.accessToken,
+            user: response.data.user,
+            isAuth: true,
+            isLoading: false,
+          });
+          setAccessToken(response.data.accessToken);
+        } catch (error) {
+          console.log(error);
+          setAuth({
+            accessToken: "",
+            user: null,
+            isAuth: false,
+            isLoading: false,
+          });
+        }
+    }
+    checkAuth();
+  }, [])
+
   return (
     <AuthContext.Provider value={{ ...auth, loginContext, logoutContext }}>
       {children}

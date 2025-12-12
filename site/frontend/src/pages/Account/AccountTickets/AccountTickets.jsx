@@ -3,7 +3,7 @@ import AccountTicket from "@/components/Account/AccountTicket/AccountTicket.jsx"
 import styles from "./AccountTickets.module.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext.jsx";
-import axios from "axios";
+import api from "@/api/axios.js";
 
 const AccountTickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -16,7 +16,7 @@ const AccountTickets = () => {
 
     const fetchTickets = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/booking/userticket", {
+        const response = await api.get("booking/userticket", {
           params: { email: user.email },
         });
         setTickets(response.data);

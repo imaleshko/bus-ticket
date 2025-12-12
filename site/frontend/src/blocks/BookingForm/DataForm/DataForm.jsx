@@ -7,7 +7,9 @@ import NotFound from "@/components/NotFound/NotFound.jsx";
 import { useAuth } from "@/context/AuthContext.jsx";
 import { useEffect, useState } from "react";
 import { useBooking } from "@/hooks/useBooking.jsx";
-import axios from "axios";
+import api from "@/api/axios.js";
+import useRoute from "@/hooks/useRoute.jsx";
+import Spinner from "@/ui/Spinner/Spinner.jsx";
 
 const DataForm = () => {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const DataForm = () => {
   const date = searchParams.get("date");
   const seat = Number(searchParams.get("seat"));
 
-  const [route, setRoute] = useState(null);
+  const { route, isPending } = useRoute(routeId, date);
 
   const { createBooking, isError, error } = useBooking();
 
@@ -41,28 +43,6 @@ const DataForm = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (!routeId || !date) {
-      return;
-    }
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/routes/${routeId}`,
-          {
-            params: { date: date },
-          },
-        );
-        setRoute(response.data);
-        console.log(route);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    void fetchData();
-  }, [routeId, date]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
@@ -82,6 +62,10 @@ const DataForm = () => {
       },
     });
   };
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   if (!route) {
     return (

@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const User = require('../schemes/user');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+const ACCESS_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
+const REFRESH_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
 
 router.post('/register', async (req, res) => {
     try {
@@ -24,7 +28,22 @@ router.post('/register', async (req, res) => {
 
         await newUser.save();
 
-        res.status(200).json({user: newUser});
+
+        const accessToken = jwt.sign({
+            id: newUser._id,
+            email: newUser.email,
+        }, ACCESS_SECRET, { expiresIn: '15m' });
+
+        const refreshToken = jwt.sign({
+            id: newUser._id,
+        }, REFRESH_SECRET, { expiresIn: '7d' });
+
+        res.cookie('refreshToken', refreshToken, {
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            httpOnly: true
+        })
+
+        res.json({accessToken, user: newUser});
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Помилка сервера" });
@@ -40,11 +59,58 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({message: "Неправильна пошта або пароль"})
         }
 
-        res.json({user: user});
+        const accessToken = jwt.sign({
+            id: user._id,
+            email: user.email,
+        }, ACCESS_SECRET, { expiresIn: '15m' });
+
+        const refreshToken = jwt.sign({
+            id: user._id,
+        }, REFRESH_SECRET, { expiresIn: '7d' });
+
+        res.cookie('refreshToken', refreshToken, {
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            httpOnly: true
+        })
+
+        res.json({accessToken, user});
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Помилка сервера" });
     }
+})
+
+router.get('/refresh', async (req, res) => {
+    try {
+        const {refreshToken} = req.cookies;
+
+        if (!refreshToken) {
+            return res.status(401).json({message: "Не авторизовано"});
+        }
+
+        const userData = jwt.verify(refreshToken, REFRESH_SECRET);
+
+        const user = await User.findById(userData.id);
+
+        if (!user) {
+            return res.status(401).json({message: "Користувача не знайдено"});
+        }
+
+        const accessToken = jwt.sign({
+            id: user._id,
+            email: user.email,
+        }, ACCESS_SECRET, { expiresIn: '15m' });
+
+        res.json({accessToken, user});
+    } catch (error) {
+        console.log(error);
+        return res.status(401).json({ message: "Не авторизовано" });
+    }
+})
+
+router.post('/logout', async (req, res) => {
+    res.clearCookie('refreshToken');
+    res.json({message: "Вихід успішний"})
 })
 
 module.exports = router;

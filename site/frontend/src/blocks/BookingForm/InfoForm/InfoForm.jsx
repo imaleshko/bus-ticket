@@ -3,39 +3,22 @@ import BookingHeader from "@/components/BookingForm/BookingHeader/BookingHeader.
 import RouteInfo from "@/components/BookingForm/RouteInfo/RouteInfo.jsx";
 import SeatChoose from "@/components/BookingForm/SeatChoose/SeatChoose.jsx";
 import Button from "@/ui/Button/Button.jsx";
-import { useEffect, useState } from "react";
-import { createSearchParams, useNavigate, useSearchParams } from "react-router";
+import { useState } from "react";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router";
 import NotFound from "@/components/NotFound/NotFound.jsx";
-import axios from "axios";
+import Spinner from "@/ui/Spinner/Spinner.jsx";
+import useRoute from "@/hooks/useRoute.jsx";
 
 const InfoForm = () => {
   const [searchParams] = useSearchParams();
   const routeId = searchParams.get("routeId");
   const date = searchParams.get("date");
 
-  const [route, setRoute] = useState(null);
-
-  useEffect(() => {
-    if (!routeId || !date) {
-      return;
-    }
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/routes/${routeId}`,
-          {
-            params: { date: date },
-          },
-        );
-        setRoute(response.data);
-        console.log(route);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    void fetchData();
-  }, [routeId, date]);
+  const { route, isPending } = useRoute(routeId, date);
 
   const [selectedSeat, setSelectedSeat] = useState(null);
 
@@ -60,6 +43,10 @@ const InfoForm = () => {
       }).toString(),
     });
   };
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   if (!route) {
     return (
