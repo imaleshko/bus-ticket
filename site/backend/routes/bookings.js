@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const BusRoute = require("../schemes/busRoute");
 const Booking = require("../schemes/booking");
+const authMiddleware = require("../middlewares/authMiddleware");
 
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
     try {
         const {routeId, date, seat, email} = req.body;
 
@@ -50,7 +51,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/userticket', async (req, res) => {
+router.get('/userticket', authMiddleware, async (req, res) => {
     try {
         const {email} = req.query;
 

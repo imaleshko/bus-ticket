@@ -29,6 +29,7 @@ const SearchForm = ({ initialFrom = "", initialTo = "", initialDate = "" }) => {
     <div className={styles.content}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <input
+          name="from"
           type="text"
           placeholder="Звідки"
           className={styles.input}
@@ -37,6 +38,7 @@ const SearchForm = ({ initialFrom = "", initialTo = "", initialDate = "" }) => {
         />
         <div className={styles.divider}></div>
         <input
+          name="to"
           type="text"
           placeholder="Куди"
           className={styles.input}
@@ -45,6 +47,7 @@ const SearchForm = ({ initialFrom = "", initialTo = "", initialDate = "" }) => {
         />
         <div className={styles.divider}></div>
         <input
+          name="date"
           type="date"
           placeholder="Коли"
           className={styles.input}
