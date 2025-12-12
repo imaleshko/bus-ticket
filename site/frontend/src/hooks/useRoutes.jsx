@@ -10,13 +10,13 @@ export const useRoutes = (from, to, date) => {
       });
       return response.data;
     },
-    enabled: !!from && !!to && !!date
+    enabled: !!from && !!to && !!date,
   });
 
   return {
     routes: query.data || [],
     isPending: query.isPending,
-  }
-}
+  };
+};
 
 export default useRoutes;

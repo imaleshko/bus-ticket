@@ -1,8 +1,8 @@
-import Success from './Success';
+import Success from "./Success";
 
-describe('<Success />', () => {
-  it('renders success message', () => {
+describe("<Success />", () => {
+  it("renders success message", () => {
     cy.mountWithWrappers(<Success />);
-    cy.contains('Успішно!').should('be.visible');
+    cy.contains("Успішно!").should("be.visible");
   });
 });

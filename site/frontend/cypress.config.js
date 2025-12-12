@@ -2,8 +2,7 @@ import { defineConfig } from "cypress";
 import codeCoverageTask from "@cypress/code-coverage/task";
 
 export default defineConfig({
-
-  projectId: 'nw8xzb',
+  projectId: "nw8xzb",
   e2e: {
     baseUrl: "http://localhost:5173",
     setupNodeEvents(on, config) {
@@ -24,5 +23,4 @@ export default defineConfig({
       return config;
     },
   },
-
 });

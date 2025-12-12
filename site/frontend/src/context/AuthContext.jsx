@@ -26,33 +26,32 @@ export const AuthProvider = ({ children }) => {
       user: null,
       isAuth: false,
     });
-    setAccessToken('');
+    setAccessToken("");
   };
 
   useEffect(() => {
     const checkAuth = async () => {
-        try {
-          const response = await api.get('auth/refresh', {
-          });
-          setAuth({
-            accessToken: response.data.accessToken,
-            user: response.data.user,
-            isAuth: true,
-            isLoading: false,
-          });
-          setAccessToken(response.data.accessToken);
-        } catch (error) {
-          console.log(error);
-          setAuth({
-            accessToken: "",
-            user: null,
-            isAuth: false,
-            isLoading: false,
-          });
-        }
-    }
+      try {
+        const response = await api.get("auth/refresh", {});
+        setAuth({
+          accessToken: response.data.accessToken,
+          user: response.data.user,
+          isAuth: true,
+          isLoading: false,
+        });
+        setAccessToken(response.data.accessToken);
+      } catch (error) {
+        console.log(error);
+        setAuth({
+          accessToken: "",
+          user: null,
+          isAuth: false,
+          isLoading: false,
+        });
+      }
+    };
     checkAuth();
-  }, [])
+  }, []);
 
   return (
     <AuthContext.Provider value={{ ...auth, loginContext, logoutContext }}>

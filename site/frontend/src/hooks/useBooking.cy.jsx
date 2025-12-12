@@ -1,4 +1,4 @@
-import { useBooking } from './useBooking';
+import { useBooking } from "./useBooking";
 
 const TestComponent = () => {
   const { createBooking, isSuccess, isError, error } = useBooking();
@@ -15,34 +15,33 @@ const TestComponent = () => {
   );
 };
 
-describe('useBooking Hook', () => {
-
-  it('handles successful booking', () => {
-    cy.intercept('POST', '**/api/booking', {
+describe("useBooking Hook", () => {
+  it("handles successful booking", () => {
+    cy.intercept("POST", "**/api/booking", {
       statusCode: 200,
-      body: { status: 'ok' }
-    }).as('bookingRequest');
+      body: { status: "ok" },
+    }).as("bookingRequest");
 
     cy.mountWithWrappers(<TestComponent />);
 
-    cy.contains('Create Booking').click();
+    cy.contains("Create Booking").click();
 
-    cy.wait('@bookingRequest');
-    cy.get('[data-testid="status"]').should('have.text', 'Success');
+    cy.wait("@bookingRequest");
+    cy.get('[data-testid="status"]').should("have.text", "Success");
   });
 
-  it('handles API error correctly', () => {
-    cy.intercept('POST', '**/api/booking', {
+  it("handles API error correctly", () => {
+    cy.intercept("POST", "**/api/booking", {
       statusCode: 400,
-      body: { message: 'Місць немає' }
-    }).as('bookingFail');
+      body: { message: "Місць немає" },
+    }).as("bookingFail");
 
     cy.mountWithWrappers(<TestComponent />);
-    cy.contains('Create Booking').click();
+    cy.contains("Create Booking").click();
 
-    cy.wait('@bookingFail');
+    cy.wait("@bookingFail");
 
-    cy.get('[data-testid="status"]').should('have.text', 'Error');
-    cy.get('[data-testid="error-msg"]').should('have.text', 'Місць немає');
+    cy.get('[data-testid="status"]').should("have.text", "Error");
+    cy.get('[data-testid="error-msg"]').should("have.text", "Місць немає");
   });
 });

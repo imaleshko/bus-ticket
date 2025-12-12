@@ -4,11 +4,7 @@ import RouteInfo from "@/components/BookingForm/RouteInfo/RouteInfo.jsx";
 import SeatChoose from "@/components/BookingForm/SeatChoose/SeatChoose.jsx";
 import Button from "@/ui/Button/Button.jsx";
 import { useState } from "react";
-import {
-  createSearchParams,
-  useNavigate,
-  useSearchParams,
-} from "react-router";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router";
 import NotFound from "@/components/NotFound/NotFound.jsx";
 import Spinner from "@/ui/Spinner/Spinner.jsx";
 import useRoute from "@/hooks/useRoute.jsx";
@@ -75,9 +71,7 @@ const InfoForm = () => {
         </div>
       </div>
       <div className={styles.footer}>
-        <Button onClick={handleContinue}>
-          Продовжити
-        </Button>
+        <Button onClick={handleContinue}>Продовжити</Button>
       </div>
     </div>
   );

@@ -6,10 +6,7 @@ export const useRegister = () => {
   const { loginContext } = useAuth();
   const mutation = useMutation({
     mutationFn: async (userData) => {
-      const response = await api.post(
-        "auth/register",
-        userData,
-      );
+      const response = await api.post("auth/register", userData);
       return response.data;
     },
     onSuccess: (data) => {

@@ -22,7 +22,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
-        <Route element={<PrivateRoute />} >
+        <Route element={<PrivateRoute />}>
           <Route path="accountinfo" element={<AccountInfo />} />
           <Route path="accounttickets" element={<AccountTickets />} />
           <Route path="infoform" element={<Info />} />

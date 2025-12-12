@@ -23,7 +23,7 @@ const AccountTickets = () => {
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     fetchTickets();
   }, [user]);
 

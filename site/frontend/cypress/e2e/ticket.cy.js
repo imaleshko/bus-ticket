@@ -1,4 +1,4 @@
-describe ('ticket purchase', () => {
+describe("ticket purchase", () => {
   beforeEach(() => {
     cy.intercept("GET", "**/auth/refresh", {
       statusCode: 401,
@@ -7,7 +7,7 @@ describe ('ticket purchase', () => {
     cy.intercept("POST", "**/auth/login").as("login");
 
     cy.intercept("GET", "**/routes*").as("getRoutes");
-  })
+  });
 
   it("complete ticket purchase process", () => {
     cy.visit("/");
@@ -32,12 +32,12 @@ describe ('ticket purchase', () => {
     cy.contains("Забронювати").click();
 
     cy.get('button[class*="seat"]:not(:disabled)').first().click();
-    cy.contains('button', 'Продовжити').click();
+    cy.contains("button", "Продовжити").click();
 
     cy.contains("button", "До оплати").click();
 
-    cy.contains('a', 'Ваші квитки').click();
+    cy.contains("a", "Ваші квитки").click();
 
-    cy.contains('Ужгород - Львів').should('be.visible');
-  })
-})
+    cy.contains("Ужгород - Львів").should("be.visible");
+  });
+});
