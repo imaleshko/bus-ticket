@@ -1,4 +1,4 @@
-describe('Registration and login', () => {
+describe("Registration and login", () => {
   beforeEach(() => {
     cy.intercept("GET", "**/auth/refresh", {
       statusCode: 401,
@@ -15,7 +15,7 @@ describe('Registration and login', () => {
           phone: "+380564822586",
         },
       },
-    }).as('register');
+    }).as("register");
 
     cy.intercept("POST", "**/auth/login", {
       statusCode: 200,
@@ -34,25 +34,25 @@ describe('Registration and login', () => {
       statusCode: 200,
       body: {},
     }).as("logout");
-  })
+  });
 
-  it('registration', () => {
+  it("registration", () => {
     cy.visit("/");
     cy.wait("@refresh");
 
-    cy.contains('a', 'Реєстрація').click();
+    cy.contains("a", "Реєстрація").click();
     cy.url().should("include", "/registration");
-    cy.contains('Реєстрація').should("be.visible");
+    cy.contains("Реєстрація").should("be.visible");
 
-    cy.get('input[name="name"]').type('cypress');
-    cy.get('input[name="surname"]').type('text');
-    cy.get('input[name="email"]').type('text@cypress.test');
-    cy.get('input[name="phone"]').type('+380564822586');
-    cy.get('input[name="password"]').type('gwghegheigig');
+    cy.get('input[name="name"]').type("cypress");
+    cy.get('input[name="surname"]').type("text");
+    cy.get('input[name="email"]').type("text@cypress.test");
+    cy.get('input[name="phone"]').type("+380564822586");
+    cy.get('input[name="password"]').type("gwghegheigig");
     cy.get('input[name="confirmPassword"]').type("gwghegheigig");
     cy.get('input[name="terms"]').check();
-    cy.contains('button', 'Зареєструватися').click();
-    cy.wait('@register');
+    cy.contains("button", "Зареєструватися").click();
+    cy.wait("@register");
 
     cy.url().should("include", "/accountinfo");
     cy.contains("cypress").should("be.visible");
@@ -64,9 +64,9 @@ describe('Registration and login', () => {
     cy.wait("@logout");
     cy.url().should("include", "/");
     cy.contains("Реєстрація").should("be.visible");
-  })
+  });
 
-  it('login', () => {
+  it("login", () => {
     cy.visit("/");
     cy.wait("@refresh");
 
@@ -88,5 +88,5 @@ describe('Registration and login', () => {
     cy.wait("@logout");
     cy.url().should("include", "/");
     cy.contains("Реєстрація").should("be.visible");
-  })
-})
+  });
+});

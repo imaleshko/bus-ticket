@@ -6,10 +6,7 @@ export const useLogin = () => {
   const { loginContext } = useAuth();
   const mutation = useMutation({
     mutationFn: async (data) => {
-      const response = await api.post(
-        "auth/login",
-        data,
-      );
+      const response = await api.post("auth/login", data);
       return response.data;
     },
     onSuccess: (data) => {

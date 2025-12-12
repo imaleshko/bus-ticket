@@ -11,7 +11,7 @@ export const useLogout = () => {
     },
     onSuccess: () => {
       logoutContext();
-      setAccessToken(null)
+      setAccessToken(null);
     },
   });
 
