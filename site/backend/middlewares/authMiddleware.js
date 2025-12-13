@@ -15,9 +15,8 @@ module.exports = (req, res, next) => {
             return res.status(401).json({ message: "Не авторизовано: Відсутній токен" });
         }
 
-        const decoded = jwt.verify(token, ACCESS_SECRET);
+        req.user = jwt.verify(token, ACCESS_SECRET);
 
-        req.user = decoded;
         next();
     } catch (error) {
         return res.status(401).json({ message: "Не авторизовано: Токен недійсний або скінчився термін дії" });
