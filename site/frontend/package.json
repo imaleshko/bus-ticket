@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "cypress:open": "cypress open",
-    "prettier": "npx prettier . --write",
+    "prettier": "npx prettier . --write"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.7",

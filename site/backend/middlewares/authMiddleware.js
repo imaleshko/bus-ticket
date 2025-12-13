@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 
-const ACCESS_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
+const ACCESS_SECRET = process.env.ACCESS_SECRET;
 
 module.exports = (req, res, next) => {
     if (req.method === 'OPTIONS') {

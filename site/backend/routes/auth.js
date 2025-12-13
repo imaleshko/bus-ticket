@@ -4,8 +4,8 @@ const User = require('../schemes/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const ACCESS_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
-const REFRESH_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
+const ACCESS_SECRET = process.env.ACCESS_SECRET;
+const REFRESH_SECRET = process.env.REFRESH_SECRET;
 
 router.post('/register', async (req, res) => {
     try {
