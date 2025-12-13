@@ -27,7 +27,7 @@ app.use('/api/booking', bookingRoutes)
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("Connected to MongoDB"))
-    .catch((error) => console.log("Not connected to MongoDB"));
+    .catch(() => console.log("Not connected to MongoDB"));
 
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
