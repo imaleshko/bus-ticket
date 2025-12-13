@@ -40,7 +40,9 @@ router.post('/register', async (req, res) => {
 
         res.cookie('refreshToken', refreshToken, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
         })
 
         res.json({accessToken, user: newUser});
@@ -70,7 +72,9 @@ router.post('/login', async (req, res) => {
 
         res.cookie('refreshToken', refreshToken, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
         })
 
         res.json({accessToken, user});
@@ -109,7 +113,10 @@ router.get('/refresh', async (req, res) => {
 })
 
 router.post('/logout', async (req, res) => {
-    res.clearCookie('refreshToken');
+    res.clearCookie('refreshToken', {
+        secure: true,
+        sameSite: 'none'
+    });
     res.json({message: "Вихід успішний"})
 })
 
