@@ -2,6 +2,10 @@ import DataForm from "./DataForm";
 
 describe("<DataForm />", () => {
   it("shows NotFound", () => {
+    cy.intercept("GET", "**/api/routes/*", {
+      statusCode: 404,
+      body: null,
+    }).as("getMissingRoute");
     cy.mountWithWrappers(<DataForm />);
     cy.contains("Маршрут не знайдено").should("be.visible");
   });
@@ -9,6 +13,7 @@ describe("<DataForm />", () => {
   it("success ", () => {
     const routeId = "r1";
     const date = "2025-10-10";
+    const seatNumber = 9;
 
     const mockRoute = {
       routeId: routeId,
@@ -44,7 +49,7 @@ describe("<DataForm />", () => {
     cy.mountWithWrappers(<DataForm />, {
       routerProps: {
         initialEntries: [
-          `/data?routeId=${routeId}&date=${date}&count=1&seats=5`,
+          `/data?routeId=${routeId}&date=${date}&seat=${seatNumber}`,
         ],
       },
     });
@@ -63,7 +68,7 @@ describe("<DataForm />", () => {
         routeId: "r1",
         date: date,
         email: "test@user.com",
-        seats: [5],
+        seats: seatNumber,
       });
   });
 
@@ -80,7 +85,7 @@ describe("<DataForm />", () => {
 
     cy.mountWithWrappers(<DataForm />, {
       routerProps: {
-        initialEntries: [`/data?routeId=${routeId}&date=2025-10-10`],
+        initialEntries: [`/data?routeId=${routeId}&date=2025-10-10$seat=1`],
       },
     });
 

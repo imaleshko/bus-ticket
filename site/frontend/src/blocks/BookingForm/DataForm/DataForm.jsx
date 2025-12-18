@@ -7,7 +7,6 @@ import NotFound from "@/components/NotFound/NotFound.jsx";
 import { useAuth } from "@/context/AuthContext.jsx";
 import { useEffect, useState } from "react";
 import { useBooking } from "@/hooks/useBooking.jsx";
-import api from "@/api/axios.js";
 import useRoute from "@/hooks/useRoute.jsx";
 import Spinner from "@/ui/Spinner/Spinner.jsx";
 

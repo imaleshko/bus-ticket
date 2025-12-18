@@ -25,6 +25,10 @@ app.use('/api/routes', busRoutes)
 app.use('/api/auth', auth)
 app.use('/api/booking', bookingRoutes)
 
+app.get('/', (req, res) => {
+    res.send("Ok")
+})
+
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("Connected to MongoDB"))
     .catch(() => console.log("Not connected to MongoDB"));
