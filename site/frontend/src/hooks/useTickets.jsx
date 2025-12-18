@@ -14,7 +14,7 @@ export const useTickets = (email) => {
   });
 
   return {
-    tickets: query.data || null,
+    tickets: query.data || [],
     isPending: query.isPending,
   };
 };

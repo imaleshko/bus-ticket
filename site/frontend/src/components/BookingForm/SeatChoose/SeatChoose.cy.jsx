@@ -39,7 +39,7 @@ describe("<SeatChoose />", () => {
   });
 
   it("renders selected seats", () => {
-    const selectedSeats = [3];
+    const selectedSeats = 3;
 
     cy.mount(<SeatChoose totalSeats={20} selectedSeats={selectedSeats} />);
     cy.contains("button", "3").should("have.class", styles.selected);
