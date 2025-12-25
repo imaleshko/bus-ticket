@@ -1,19 +1,16 @@
-import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "@/context/AuthContext.jsx";
+import api from "@/api/axios.js";
 
 export const useRegister = () => {
   const { loginContext } = useAuth();
   const mutation = useMutation({
     mutationFn: async (userData) => {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/register",
-        userData,
-      );
+      const response = await api.post("auth/register", userData);
       return response.data;
     },
     onSuccess: (data) => {
-      loginContext({ user: data.user });
+      loginContext({ accessToken: data.accessToken, user: data.user });
     },
   });
 

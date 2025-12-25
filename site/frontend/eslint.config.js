@@ -2,7 +2,7 @@ import js from "@eslint/js";
 import globals from "globals";
 import pluginReact from "eslint-plugin-react";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
-import pluginCypress from 'eslint-plugin-cypress'
+import pluginCypress from "eslint-plugin-cypress";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([

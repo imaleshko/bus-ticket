@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const BusRoute = require('../schemes/busRoute');
 const Booking = require("../schemes/booking");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 router.get('/', async (req, res) => {
     try {
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/:routeId', async (req, res) => {
+router.get('/:routeId', authMiddleware, async (req, res) => {
     try {
         const {routeId} = req.params;
         const {date} = req.query;
@@ -36,15 +37,9 @@ router.get('/:routeId', async (req, res) => {
             return;
         }
 
-        const bookings = await Booking.find({routeId, date})
+        const bookings = await Booking.find({routeId, date}).select('seat');
 
-        let bookingSeats = []
-
-        bookings.forEach(booking => {
-            bookingSeats = [
-                ...bookingSeats, ...booking.seats,
-            ]
-        })
+        let bookingSeats = bookings.map(booking => booking.seat);
 
         res.json({
             ...bus_route.toObject(),

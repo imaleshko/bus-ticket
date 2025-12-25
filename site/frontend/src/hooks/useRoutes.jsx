@@ -1,28 +1,22 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import api from "@/api/axios.js";
+import { useQuery } from "@tanstack/react-query";
 
-export const useRoutes = (from, to) => {
-  const [routes, setRoutes] = useState([]);
+export const useRoutes = (from, to, date) => {
+  const query = useQuery({
+    queryKey: ["routes", from, to, date],
+    queryFn: async () => {
+      const response = await api.get("routes", {
+        params: { from, to },
+      });
+      return response.data;
+    },
+    enabled: !!from && !!to && !!date,
+  });
 
-  useEffect(() => {
-    if (!from || !to) {
-      setRoutes([]);
-      return;
-    }
-
-    const getData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/api/routes", {
-          params: { from, to },
-        });
-        setRoutes(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    void getData();
-  }, [from, to]);
-  return routes;
+  return {
+    routes: query.data || [],
+    isPending: query.isPending,
+  };
 };
 
 export default useRoutes;

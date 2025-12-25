@@ -22,10 +22,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    tickets: {
-        type: Array,
-        default: [],
-    }
 })
 
 module.exports = mongoose.model("User", userSchema);

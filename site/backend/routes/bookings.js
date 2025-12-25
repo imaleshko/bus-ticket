@@ -2,23 +2,23 @@ const express = require("express");
 const router = express.Router();
 const BusRoute = require("../schemes/busRoute");
 const Booking = require("../schemes/booking");
-const User = require("../schemes/user");
+const authMiddleware = require("../middlewares/authMiddleware");
 
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
     try {
-        const {routeId, date, seats, price, email} = req.body;
+        const {routeId, date, seat, email} = req.body;
 
-        const routeBookings = await Booking.find({routeId, date});
+        const existingBooking = await Booking.findOne({
+            routeId: routeId,
+            date: date,
+            seat: seat,
+        })
 
-        let bookedSeats = [];
-        routeBookings.forEach(booking => bookedSeats = [...bookedSeats, ...booking.seats]);
-
-        const isConflict = seats.some(seat => bookedSeats.includes(seat));
-        if (isConflict) {
+        if (existingBooking) {
             return res.status(400).send({message: "Місце вже зайнято"});
         }
 
-        const routeInfo = await BusRoute.findOne({routeId});
+        const routeInfo = await BusRoute.findOne({ routeId });
 
         if (!routeInfo) {
             return res.status(400).json({message: "Маршрут не знайдено"});
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
         const newBooking = new Booking({
             routeId,
             date,
-            seats,
+            seat,
             email,
             from: routeInfo.from,
             to: routeInfo.to,
@@ -41,15 +41,28 @@ router.post('/', async (req, res) => {
 
         await newBooking.save();
 
-        const user = await User.findOne({email});
-        if (user) {
-            user.tickets.push(newBooking);
-            await user.save();
-        }
-
         res.status(201).json(newBooking);
     } catch (error) {
+        if (error.code === 11000) {
+            return res.status(400).json({ message: "Місце вже зайнято" });
+        }
         console.log(error.message);
+        res.status(500).json({ message: "Помилка сервера" });
+    }
+})
+
+router.get('/userticket', authMiddleware, async (req, res) => {
+    try {
+        const {email} = req.query;
+
+        if (!email) {
+            return res.status(400).json();
+        }
+
+        const tickets = await Booking.find({email}).sort({ createdAt: -1 });
+
+        res.json(tickets);
+    } catch (error) {
         res.status(500).json({ message: "Помилка сервера" });
     }
 })

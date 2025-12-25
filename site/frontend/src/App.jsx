@@ -11,6 +11,7 @@ import PageNotFound from "./pages/PageNotFound/PageNotFound.jsx";
 import Info from "./pages/BookingForm/Info.jsx";
 import Data from "./pages/BookingForm/Data.jsx";
 import Success from "./pages/BookingForm/Success.jsx";
+import PrivateRoute from "@/routes/PrivateRoute.jsx";
 
 function App() {
   return (
@@ -21,11 +22,13 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="login" element={<Login />} />
         <Route path="registration" element={<Registration />} />
-        <Route path="accountinfo" element={<AccountInfo />} />
-        <Route path="accounttickets" element={<AccountTickets />} />
-        <Route path="infoform" element={<Info />} />
-        <Route path="dataform" element={<Data />} />
-        <Route path="success" element={<Success />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="accountinfo" element={<AccountInfo />} />
+          <Route path="accounttickets" element={<AccountTickets />} />
+          <Route path="infoform" element={<Info />} />
+          <Route path="dataform" element={<Data />} />
+          <Route path="success" element={<Success />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

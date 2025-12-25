@@ -1,8 +1,8 @@
-import AccountInfo from './AccountInfo';
+import AccountInfo from "./AccountInfo";
 
-describe('<AccountInfo />', () => {
-  it('renders correctly', () => {
+describe("<AccountInfo />", () => {
+  it("renders correctly", () => {
     cy.mountWithWrappers(<AccountInfo />);
-    cy.get('div').should('exist');
+    cy.get("div").should("exist");
   });
 });

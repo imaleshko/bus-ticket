@@ -3,15 +3,28 @@ import AccountTicket from "@/components/Account/AccountTicket/AccountTicket.jsx"
 import styles from "./AccountTickets.module.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext.jsx";
+import api from "@/api/axios.js";
 
 const AccountTickets = () => {
   const [tickets, setTickets] = useState([]);
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user && user.tickets) {
-      setTickets(user.tickets);
+    if (!user || !user.email) {
+      return;
     }
+
+    const fetchTickets = async () => {
+      try {
+        const response = await api.get("booking/userticket", {
+          params: { email: user.email },
+        });
+        setTickets(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTickets();
   }, [user]);
 
   return (
@@ -23,7 +36,7 @@ const AccountTickets = () => {
         ) : (
           tickets.map((ticket) => (
             <AccountTicket
-              key={ticket.id}
+              key={ticket._id}
               from={ticket.from}
               to={ticket.to}
               date={ticket.date}

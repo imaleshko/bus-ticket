@@ -7,7 +7,9 @@ import NotFound from "@/components/NotFound/NotFound.jsx";
 import { useAuth } from "@/context/AuthContext.jsx";
 import { useEffect, useState } from "react";
 import { useBooking } from "@/hooks/useBooking.jsx";
-import axios from "axios";
+import api from "@/api/axios.js";
+import useRoute from "@/hooks/useRoute.jsx";
+import Spinner from "@/ui/Spinner/Spinner.jsx";
 
 const DataForm = () => {
   const navigate = useNavigate();
@@ -15,16 +17,13 @@ const DataForm = () => {
 
   const routeId = searchParams.get("routeId");
   const date = searchParams.get("date");
-  const count = Number(searchParams.get("count"));
-  const seats = searchParams.get("seats")
-    ? searchParams.get("seats").split(",").map(Number)
-    : [];
+  const seat = Number(searchParams.get("seat"));
 
-  const [route, setRoute] = useState(null);
+  const { route, isPending } = useRoute(routeId, date);
 
   const { createBooking, isError, error } = useBooking();
 
-  const { user, loginContext } = useAuth();
+  const { user } = useAuth();
 
   const [data, setData] = useState({
     name: "",
@@ -44,28 +43,6 @@ const DataForm = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (!routeId || !date) {
-      return;
-    }
-
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3000/api/routes/${routeId}`,
-          {
-            params: { date: date },
-          },
-        );
-        setRoute(response.data);
-        console.log(route);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    void fetchData();
-  }, [routeId, date]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
@@ -75,21 +52,20 @@ const DataForm = () => {
     const bookingData = {
       routeId: route.routeId,
       date: date,
-      seats: seats,
+      seat: seat,
       email: data.email,
     };
 
     createBooking(bookingData, {
-      onSuccess: (newTicket) => {
-        const updatedUser = {
-          ...user,
-          tickets: [...(user.tickets || []), newTicket],
-        };
-        loginContext({ user: updatedUser });
+      onSuccess: () => {
         navigate("/success");
       },
     });
   };
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   if (!route) {
     return (
@@ -99,7 +75,6 @@ const DataForm = () => {
     );
   }
 
-  const totalPrice = route.price * count;
   const { from, to } = route;
 
   return (
@@ -145,13 +120,12 @@ const DataForm = () => {
           <div className={styles.timelineWrapper}>
             <RouteTimeline route={route} />
           </div>
-          <div className={styles.ticketCount}>{count} квиток(ів)</div>
-          <div className={styles.price}>{totalPrice} грн</div>
+          <div className={styles.price}>{route.price} грн</div>
         </div>
       </div>
       <div className={styles.footer}>
-        <div className={styles.button} onClick={handleSubmit}>
-          <Button>До оплати</Button>
+        <div className={styles.button}>
+          <Button onClick={handleSubmit}>До оплати</Button>
         </div>
       </div>
     </div>
