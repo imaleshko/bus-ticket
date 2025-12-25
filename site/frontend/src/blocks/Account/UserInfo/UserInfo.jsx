@@ -1,6 +1,6 @@
-import EditIcon from "../../../assets/account/img.png";
+import EditIcon from "@/assets/account/img.png";
 import styles from "./UserInfo.module.css";
-import { useAuth } from "../../../context/AuthContext.jsx";
+import { useAuth } from "@/context/AuthContext.jsx";
 
 const UserInfo = () => {
   const { user } = useAuth();
@@ -16,7 +16,7 @@ const UserInfo = () => {
         </div>
         <div className={styles.fieldsContainer}>
           <div className={styles.field}>
-            <label className={styles.label}>Ім'я</label>
+            <label className={styles.label}>Ім&#39;я</label>
             <div className={styles.value}>{user?.name}</div>
           </div>
           <div className={styles.field}>

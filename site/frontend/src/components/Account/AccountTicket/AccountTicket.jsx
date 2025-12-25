@@ -1,5 +1,5 @@
 import styles from "./AccountTicket.module.css";
-import Button from "../../../ui/Button/Button.jsx";
+import Button from "@/ui/Button/Button.jsx";
 
 const AccountTicket = ({ from, to, date }) => {
   return (
