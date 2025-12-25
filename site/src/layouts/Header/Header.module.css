@@ -39,7 +39,18 @@
   text-decoration: none;
 }
 
+.login {
+  display: flex;
+  align-items: center;
+}
+
 .login img {
   width: 52px;
   height: 52px;
+}
+
+.authLinks {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
