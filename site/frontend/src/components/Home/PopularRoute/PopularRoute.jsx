@@ -22,7 +22,7 @@ const PopularRoute = ({ id, from, to, frequency }) => {
       navigate({
         pathname: "/infoform",
         search: createSearchParams({
-          id: id,
+          routeId: id,
           date: date,
         }).toString(),
       });

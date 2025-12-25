@@ -1,31 +1,17 @@
 import AccountSidebar from "@/components/Account/AccountSidebar/AccountSidebar.jsx";
 import AccountTicket from "@/components/Account/AccountTicket/AccountTicket.jsx";
 import styles from "./AccountTickets.module.css";
-import { useEffect, useState } from "react";
 import { useAuth } from "@/context/AuthContext.jsx";
-import api from "@/api/axios.js";
+import useTickets from "@/hooks/useTickets.jsx";
+import Spinner from "@/ui/Spinner/Spinner.jsx";
 
 const AccountTickets = () => {
-  const [tickets, setTickets] = useState([]);
   const { user } = useAuth();
+  const { tickets, isPending } = useTickets(user?.email);
 
-  useEffect(() => {
-    if (!user || !user.email) {
-      return;
-    }
-
-    const fetchTickets = async () => {
-      try {
-        const response = await api.get("booking/userticket", {
-          params: { email: user.email },
-        });
-        setTickets(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchTickets();
-  }, [user]);
+  if (isPending) {
+    return <Spinner />;
+  }
 
   return (
     <div className={styles.pageContainer}>

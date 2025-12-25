@@ -1,5 +1,9 @@
 .DS_Store
 .idea/
 node_modules/
-coverage
-.nyc_output
+dist/
+.env
+dist
+**/cypress/screenshots/
+coverage/
+.nyc_output/

@@ -12,7 +12,9 @@ Cypress.Commands.add("mountWithWrappers", (component, options = {}) => {
   const wrapped = (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <MemoryRouter {...routerProps}>{component}</MemoryRouter>
+        <MemoryRouter {...routerProps}>
+          {component}
+        </MemoryRouter>
       </AuthProvider>
     </QueryClientProvider>
   );

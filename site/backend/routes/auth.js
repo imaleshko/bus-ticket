@@ -4,8 +4,8 @@ const User = require('../schemes/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const ACCESS_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
-const REFRESH_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
+const ACCESS_SECRET = process.env.ACCESS_SECRET;
+const REFRESH_SECRET = process.env.REFRESH_SECRET;
 
 router.post('/register', async (req, res) => {
     try {
@@ -28,7 +28,6 @@ router.post('/register', async (req, res) => {
 
         await newUser.save();
 
-
         const accessToken = jwt.sign({
             id: newUser._id,
             email: newUser.email,
@@ -40,7 +39,9 @@ router.post('/register', async (req, res) => {
 
         res.cookie('refreshToken', refreshToken, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
         })
 
         res.json({accessToken, user: newUser});
@@ -70,7 +71,9 @@ router.post('/login', async (req, res) => {
 
         res.cookie('refreshToken', refreshToken, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
-            httpOnly: true
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none'
         })
 
         res.json({accessToken, user});
@@ -109,7 +112,10 @@ router.get('/refresh', async (req, res) => {
 })
 
 router.post('/logout', async (req, res) => {
-    res.clearCookie('refreshToken');
+    res.clearCookie('refreshToken', {
+        secure: true,
+        sameSite: 'none'
+    });
     res.json({message: "Вихід успішний"})
 })
 

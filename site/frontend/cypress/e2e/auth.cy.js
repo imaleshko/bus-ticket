@@ -34,6 +34,11 @@ describe("Registration and login", () => {
       statusCode: 200,
       body: {},
     }).as("logout");
+
+    cy.intercept("GET", "**/booking/userticket*", {
+      statusCode: 200,
+      body: [],
+    }).as("getTickets");
   });
 
   it("registration", () => {
@@ -58,6 +63,7 @@ describe("Registration and login", () => {
     cy.contains("cypress").should("be.visible");
     cy.contains("+380564822586").should("be.visible");
     cy.contains("a", "Мої квитки").click();
+    cy.wait("@getTickets");
     cy.contains("немає придбаних квитків").should("be.visible");
     cy.contains("a", "Вихід").click();
 
@@ -82,6 +88,7 @@ describe("Registration and login", () => {
     cy.contains("cypress").should("be.visible");
     cy.contains("+380564822586").should("be.visible");
     cy.contains("a", "Мої квитки").click();
+    cy.wait("@getTickets");
     cy.contains("немає придбаних квитків").should("be.visible");
     cy.contains("a", "Вихід").click();
 

@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 
-const ACCESS_SECRET = "pCqg1O0p6Vn4IuZxT1FJ3yq2uE7K9dR4wR8g0mYf2sA=";
+const ACCESS_SECRET = process.env.ACCESS_SECRET;
 
 module.exports = (req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -15,9 +15,8 @@ module.exports = (req, res, next) => {
             return res.status(401).json({ message: "Не авторизовано: Відсутній токен" });
         }
 
-        const decoded = jwt.verify(token, ACCESS_SECRET);
+        req.user = jwt.verify(token, ACCESS_SECRET);
 
-        req.user = decoded;
         next();
     } catch (error) {
         return res.status(401).json({ message: "Не авторизовано: Токен недійсний або скінчився термін дії" });
