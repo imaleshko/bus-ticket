@@ -11,12 +11,12 @@ describe("<UserInfo />", () => {
     };
     const mockContext = {
       user: mockUser,
-    }
+    };
     cy.mount(
       <AuthContext value={mockContext}>
-        <UserInfo/>
-      </AuthContext>
-    )
+        <UserInfo />
+      </AuthContext>,
+    );
     cy.contains(mockUser.name).should("be.visible");
     cy.contains(mockUser.surname).should("be.visible");
     cy.contains(mockUser.phone).should("be.visible");

@@ -62,14 +62,12 @@ describe("<DataForm />", () => {
     cy.contains("1500 грн").should("be.visible");
     cy.contains("До оплати").click();
 
-    cy.wait("@createBooking")
-      .its("request.body")
-      .should("deep.include", {
-        routeId: "r1",
-        date: date,
-        email: "test@user.com",
-        seats: seatNumber,
-      });
+    cy.wait("@createBooking").its("request.body").should("deep.include", {
+      routeId: "r1",
+      date: date,
+      email: "test@user.com",
+      seats: seatNumber,
+    });
   });
 
   it("displays error message if booking fails", () => {

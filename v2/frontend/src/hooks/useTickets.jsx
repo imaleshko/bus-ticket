@@ -10,7 +10,7 @@ export const useTickets = (email) => {
       });
       return response.data;
     },
-    enabled: !!email
+    enabled: !!email,
   });
 
   return {
