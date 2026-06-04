@@ -13,7 +13,6 @@ function sendMessage() {
 
     if (message === "") {
         alert("Будь ласка, введіть повідомлення перед відправкою.");
-        return;
     }
     else {
         alert("Ваше повідомлення відправлено: " + message);
