@@ -31,6 +31,10 @@ export default defineConfig([
       "react/react-in-jsx-scope": "off",
     },
   },
+  {
+    files: ["**/*.config.{js,mjs,cjs}"],
+    languageOptions: { globals: globals.node },
+  },
   eslintConfigPrettier,
   { ignores: ["build", "cypress/", "cypress.config.js"] },
 ]);
