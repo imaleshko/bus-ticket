@@ -1,7 +1,7 @@
 import styles from "./LoginForm.module.css";
 import { Link, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import { useLogin } from "../../../hooks/useLogin.jsx";
+import { useLogin } from "@/hooks/useLogin.jsx";
 
 const LoginForm = () => {
   const [data, setData] = useState({
@@ -12,7 +12,7 @@ const LoginForm = () => {
   const { login, isPending, isSuccess, isError, error } = useLogin();
 
   const handleChange = (e) => {
-    const { name, value, type } = e.target;
+    const { name, value } = e.target;
     setData((prevData) => ({
       ...prevData,
       [name]: value,

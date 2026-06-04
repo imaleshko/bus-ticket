@@ -31,21 +31,6 @@
   margin-bottom: 10px;
 }
 
-.inputTicket {
-  width: 60px;
-  padding: 8px;
-  font-size: 16px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-right: 10px;
-}
-
-.tickets {
-  font-size: 16px;
-  margin: 0;
-}
-
 .price {
   font-size: 32px;
   font-weight: 600;

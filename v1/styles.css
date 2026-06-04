@@ -126,11 +126,6 @@ button:hover {
     text-align: justify;
 }
 
-.image-container {
-    display: flex;
-    justify-content: space-between;
-}
-
 .image {
     width: 49%;
     height: auto;
