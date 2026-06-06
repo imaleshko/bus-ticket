@@ -1,5 +1,5 @@
 import styles from "./AboutText.module.css";
-import photo from "../../../assets/about/pexels-minhle17vn-977213.jpg";
+import photo from ".@/assets/about/pexels-minhle17vn-977213.jpg";
 
 const AboutText = () => {
   return (

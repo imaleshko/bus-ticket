@@ -1,5 +1,5 @@
 import styles from "./Feedback.module.css";
-import StarIcon from "../../../ui/Star/StarIcon.jsx";
+import StarIcon from "@/ui/Star/StarIcon.jsx";
 
 const Feedback = () => {
   return (
