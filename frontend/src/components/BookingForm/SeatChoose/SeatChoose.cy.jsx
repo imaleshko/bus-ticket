@@ -1,5 +1,5 @@
 import SeatChoose from "./SeatChoose";
-import styles from "./SeatChoise.module.css";
+import styles from "./SeatChoose.module.css";
 
 describe("<SeatChoose />", () => {
   it("renders seats", () => {

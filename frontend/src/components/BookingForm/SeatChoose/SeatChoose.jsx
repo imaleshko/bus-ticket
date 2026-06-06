@@ -1,4 +1,4 @@
-import styles from "./SeatChoise.module.css";
+import styles from "./SeatChoose.module.css";
 
 const SeatChoose = ({
   selectedSeats,
